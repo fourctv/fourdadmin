@@ -1,0 +1,21 @@
+<div platform>
+
+    <!-- This is our Header, with the web apps drop down -->
+    <header [hidden]="!userIsLoggedIn">
+        <div style="height: 100px;">
+                <img src="./assets/icons/LogoPascal.png" style="display: inline-block;vertical-align: top; margin-right:20px; height: 100%;"/>
+                <span style="display:inline-block; padding-left:40px; height:100% ">
+                    <label class="fieldPromptBold" style="font-size:32pt;">Welcome {{currentUser}}</label>
+                    <nav style="margin:-5px;">
+                        <a *ngFor="let menuItem of menuList" (click)="openApp(menuItem)">{{menuItem.title}}</a>
+                        <a (click)="doLogin();" style="padding-left:50px;">Logout</a>
+                    </nav>
+                </span>
+
+        </div>
+
+    </header>
+ 
+  <router-outlet></router-outlet>
+
+</div>

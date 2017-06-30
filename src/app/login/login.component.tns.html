@@ -1,0 +1,15 @@
+<ActionBar title="FourD Admin" class="action-bar"> 
+</ActionBar>
+<StackLayout class="form" style="padding-top:40" padding="10">
+  <Image src="~/assets/icons/LogoPascal.png" style="width:120;height:120"></Image>
+  <Label text="User Name" class="label"></Label>
+  <TextField [(ngModel)]="username" hint="login user name" margin="10" autocorrect="false" autocapitalizationType="none" class="input"></TextField>
+  <Label text="Password" class="label"></Label>
+  <TextField [(ngModel)]="password" hint="user password" margin="10" secure="true" autocorrect="false" autocapitalizationType="none" class="input"></TextField>
+  <StackLayout  orientation="horizontal" marginTop="15" horizontalAlignment="center">
+      <Button text="Login" (tap)="login()" class="btn btn-primary btn-active btn-rounded-lg" width="120"></Button>
+  </StackLayout>
+  <Label [text]="showError" class="text-danger"></Label>
+  <Label [text]="webAppVersion" class="text-muted" style="font-size:6;font-style: italic;" marginTop="10"></Label>
+</StackLayout>
+

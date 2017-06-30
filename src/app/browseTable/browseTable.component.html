@@ -1,0 +1,103 @@
+<web-application>
+    <h2 style="text-align: center">Browse Table</h2>
+    <div style="display: inline-flex; width:100%;z-index:5; position:absolute; top:35px;padding-left:10px;">
+        <span title="collapse browse config"><h4 style="background:#eaeef1;border-style: solid; border-width: 1px; border-radius: 5px;" (click)="hideConfig()" [hidden]="hideBrowseConfig">&#8648;&#8648;&#8648;</h4></span>
+        <span title="expand browse config"><h4 style="background:#eaeef1;border-style: solid; border-width: 1px; border-radius: 5px;" (click)="showConfig()" [hidden]="!hideBrowseConfig">&#8650;&#8650;&#8650;</h4></span>
+    </div>
+    <div class="container-fluid" style="margin-left:10px; height: calc(100% - 65px)">
+        <div class="row" [hidden]="hideBrowseConfig">
+            <div class="col-sm-2" style="border-style: solid; border-width: thin; padding-bottom: 4px;">
+                <h4>Select Table</h4>
+                <table  class="listTable">
+                    <tbody class="listBody">
+                        <tr *ngFor='let table of listOfTables' (click)="selectTable($event)">
+                            <td class="listItem">{{table}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-2" style="border-style: solid; border-width: thin; padding-bottom: 4px;">
+                <nav id="nav">
+                    <ul id="navigation">
+                        <li style="margin-left: -40px;"><h4>{{listedTable}}&nbsp;<span *ngIf="listedTable.length > 0">&raquo;</span></h4>
+                            <ul>
+                                <li *ngFor='let relatedTable of relatedOneTables' (click)="showRelatedTable($event)"><h5>{{relatedTable}}</h5></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <table class="listTable" style="height: 228px;">
+                    <tbody class="listBody">
+                        <tr *ngFor='let field of listOfFields' draggable="true" style="cursor: move;" (dragstart)="startDrag($event,'field')">
+                            <td class="listItem">{{field.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <label style="font-style: italic;">* drag fields to columns</label>
+            </div>
+            <div class="col-sm-2" style="border-style: solid; border-width: thin; padding-bottom: 4px;">
+                <h4>Columns</h4>
+                <table class="listTable">
+                    <tbody class="listBody" (dragenter)="allowDrop($event)" (dragover)="allowDrop($event)" (dragend)="disableDrop($event)" (dragleave)="disableDrop($event)" (drop)="handleDrop($event)">
+                        <tr *ngFor='let column of listOfColumns' (click)="selectColumn($event)" draggable="true" (drop)="handleDrop($event)" (dragstart)="startDrag($event,'column')" (dragleave)="disableDrop($event)">
+                            <td class="listItem">{{column.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4" style="border-style: solid; border-width: thin; padding-bottom: 4px;" [hidden]="!currentField.name">
+                <h4>Column Info</h4>
+                <form  class="form-horizontal" style="height: 250px;">
+                    <div class="form-group">
+                        <label for="field" class="control-label col-sm-2">Field:</label>
+                        <div class="col-sm-6">
+                            <input name="fieldName" type="text" class="form-control" disabled [(ngModel)]="currentField.name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd" class="control-label col-sm-2">Title:</label>
+                        <div class="col-sm-6">
+                            <input name="title" type="text" class="form-control" id="title" [(ngModel)]="currentField.title" (change)="mapColumnsToGrid()">
+                        </div>
+                    </div>
+                    <div class="form-group"> 
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                                <label><input name="indexed" type="checkbox" [(ngModel)]="currentField.quickQuery" (change)="mapColumnsToGrid()">is present on Quick Query</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group"> 
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button (click)="deleteField()">Delete</button>
+                        </div>
+                    </div>
+                 </form>
+            </div>
+        </div>
+        
+        <div class="row" style="border-style: solid; border-width: thin; padding-bottom: 4px;" [style.height]="currentGridHeight" [hidden]="currentTable === ''">   
+            <record-list [editWindow]="editWindow">
+                <query-band [enableSort]="true" [enableQBE]="true" [enableButtonBar]="true" [enableAddRecord]="false" [enableDeleteRecord]="true">
+                    <queryband class="form-group">
+                        <browse-queryband  #customQueryBand [queryFields]="listOfColumns" [(queryData)]="queryData">
+                        </browse-queryband>
+                    </queryband>
+                <custombuttonbar>
+                    <button class="regularButton" style="width:70px;" (click)="addRecord()">Add</button>
+                </custombuttonbar>                </query-band>
+                <datagrid [height]="'calc(100% - 90px)'"
+                        [model]="model" 
+                        [selectionMode]="'multiple,row'"
+                        [columns]="columnDefs"
+                        [useLazyLoading]="true"
+                        [optimizeGridLoading]="true"
+                        [pageSize]="50"
+                        [excelFilename]="'RecordList.xlsx'"
+                        >
+                </datagrid>
+            </record-list>
+        </div>
+
+    </div>
+</web-application>

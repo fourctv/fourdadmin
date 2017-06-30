@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "module": "es2015",
+    "baseUrl": "",
+    "types": ["jquery", "kendo-ui"]
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts",
+    "**/*.tns.*"
+  ]
+}

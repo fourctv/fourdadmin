@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+/*
+body {
+    margin:0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    margin:40px;
+}
+*/
+
+@import './assets/kendo/kendo.common.css';
+@import './assets/kendo/kendo.default.css';
+
+@import './assets/main';
+
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~bootstrap/dist/css/bootstrap-theme.min.css';

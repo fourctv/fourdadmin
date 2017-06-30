@@ -1,0 +1,16 @@
+nav a {
+  color: #106cc8;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 48px;
+  margin-right: 20px;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+nav a:hover,
+nav a:focus {
+    color: #23527c;
+    font-size: 15px;
+    font-weight: 900;
+}
