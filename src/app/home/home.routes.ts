@@ -10,6 +10,5 @@ export const HomeRoutes: Routes = [
     {
         path: 'about',
         loadChildren: 'app/+about/about.module#AboutModule'
-
     }
 ];
