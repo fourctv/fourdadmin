@@ -34,6 +34,7 @@ npm-debug.log
 testem.log
 /typings
 yarn.lock
+package-lock.json
 *.js
 !karma.conf.js
 !protractor.conf.js
