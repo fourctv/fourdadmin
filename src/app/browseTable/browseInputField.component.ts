@@ -18,7 +18,7 @@ import { FourDModel } from '../js44D/js44D/JSFourDModel';
                         <input *ngSwitchCase="'number'"  [name]="inputField.name" type="number" class="fieldEntry"  style="width:80px;height:20px;text-align:right;" [(ngModel)]="numberField" [disabled]="inputField.readonly"/>
                         <input *ngSwitchCase="'float'"  [name]="inputField.name" type="number" class="fieldEntry"  style="width:80px;height:20px;" [(ngModel)]="numberField" [disabled]="inputField.readonly"/>
                         <input *ngSwitchCase="'boolean'"  [name]="inputField.name" type="checkbox" class="fieldEntry" style="height:30px;width:50px;margin-top:-6px;" [(ngModel)]="booleanField" [disabled]="inputField.readonly"/>
-                        <textarea *ngSwitchCase="'json'"  [name]="inputField.name" type="text" class="fieldEntry"  cols="90" style="resize:vertical;width:75%" [(ngModel)]="objectField" [disabled]="inputField.readonly"></textarea>
+                        <textarea *ngSwitchCase="'json'"  [name]="inputField.name" type="text" class="fieldEntry"  cols="90" style="resize:vertical;width:75%" [(ngModel)]="objectField" disabled></textarea>
                      </span>    
                
                 </div>
@@ -72,10 +72,10 @@ export class BrowseInputField {
     }
 
     @Input() get objectField():string {
-        return this.currentRecord.get(this.inputField.name);
+        return JSON.stringify(this.currentRecord.get(this.inputField.name));
     }
     set objectField(v:string) {
-        this.currentRecord.set(this.inputField.name, v);
-        this.currentRecord[this.inputField.name] = v;
+        this.currentRecord.set(this.inputField.name, JSON.parse(v));
+        this.currentRecord[this.inputField.name] = JSON.parse(v);
     }
 }
