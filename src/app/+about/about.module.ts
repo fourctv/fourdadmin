@@ -1,23 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-// vendor dependencies
-import { TranslateModule } from '@ngx-translate/core';
-// app
-import { AboutComponent } from './components/about/about.component';
-import { AboutRoutes } from './about.routes';
-// common
-import { SharedModule } from '../shared';
-import { RouterModule } from '../common';
+import { SHARED_MODULES, COMPONENT_DECLARATIONS } from './about.common';
 
 @NgModule({
     imports: [
-        SharedModule,
-
-        RouterModule.forChild(<any>AboutRoutes),
-        TranslateModule.forChild()
+        ...SHARED_MODULES,
     ],
     declarations: [
-        AboutComponent
-    ]
+        ...COMPONENT_DECLARATIONS
+    ],
 })
 export class AboutModule { }

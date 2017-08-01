@@ -1,19 +1,11 @@
-import { NgModule, Optional, SkipSelf } from '@angular/core';
-// vendor dependencies
-import { TranslateModule } from '@ngx-translate/core';
+import { NgModule, Optional, SkipSelf, NO_ERRORS_SCHEMA } from '@angular/core';
 // app
 import { HomeComponent } from './components/home/home.component';
-import { HomeRoutes } from './home.routes';
-// common
-import { SharedModule } from '../shared';
-import { RouterModule } from '../common';
+import { SHARED_MODULES } from './home.common';
 
 @NgModule({
     imports: [
-        SharedModule,
-
-        RouterModule.forChild(<any>HomeRoutes),
-        TranslateModule.forChild()
+        ...SHARED_MODULES
     ],
     declarations: [HomeComponent]
 })

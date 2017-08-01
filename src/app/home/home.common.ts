@@ -1,11 +1,17 @@
-import { CommonModule } from '@angular/common';
 // vendor dependencies
 import { TranslateModule } from '@ngx-translate/core';
 // app
-import { HomeRoutingModule } from './home-routing.module';
+import { SharedModule } from '../shared';
+import { RouterModule } from '../common';
+import { HomeRoutes } from './home.routes';
+import { HomeComponent } from './components/home/home.component';
 
 export const SHARED_MODULES: any[] = [
-    CommonModule,
-    HomeRoutingModule,
-    TranslateModule.forChild()
+    SharedModule,
+    RouterModule.forChild(<any>HomeRoutes),
+    TranslateModule.forChild(),
+];
+
+export const COMPONENT_DECLARATIONS: any[] = [
+    HomeComponent
 ];
