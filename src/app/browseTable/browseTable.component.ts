@@ -48,7 +48,7 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
             actions:['Maximize', 'Minimize', 'Close'], position: {top:100, left:50},selfCentered:true,
             title:'Browse Table',
             isResizable:true,
-            width:1400, height:1000
+            width:1000, height:800
         };
 
     public dialog: ModalDialogInstance;
@@ -65,7 +65,7 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
     @Input() queryData:any = {};
     
     @Input() hideBrowseConfig:boolean = false;
-    @Input() currentGridHeight = 'calc(100% - 320px)';
+    @Input() currentGridHeight = 'calc(100% - 330px)';
     /**
      * get the associated record list object instance
      */
@@ -114,13 +114,15 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
 
     hideConfig() {
         this.hideBrowseConfig = true;
-        this.currentGridHeight = 'calc(100% - 20px)';
+        this.currentGridHeight = 'calc(100% - 30px)';
+        this.recordList.windowResized(null)
         this.recordList.refreshGrid();
     }
 
     showConfig() {
         this.hideBrowseConfig = false;
-        this.currentGridHeight = 'calc(100% - 320px)';
+        this.currentGridHeight = 'calc(100% - 330px)';
+        this.recordList.windowResized(null);
         this.recordList.refreshGrid();
     }
 

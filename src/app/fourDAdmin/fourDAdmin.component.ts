@@ -50,7 +50,7 @@ export class FourDAdminComponent implements AfterContentInit {
     constructor (public router:Router, private http:Http, private modal: Modal, private viewref: ViewContainerRef) {
         FourDInterface.http = http;
 //        FourDInterface.fourDUrl = 'http://localhost:8080';
-        FourDInterface.fourDUrl = 'http://54.191.46.243:8080';
+        FourDInterface.fourDUrl = 'http://www.vakeano.com';
         Modal.hostViewRef = this.viewref;
     }
 

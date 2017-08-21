@@ -77,16 +77,17 @@
         </div>
         
         <div class="row" style="border-style: solid; border-width: thin; padding-bottom: 4px;" [style.height]="currentGridHeight" [hidden]="currentTable === ''">   
-            <record-list [editWindow]="editWindow">
+            <record-list [editWindow]="editWindow" [dialogInstance]="dialog">
                 <query-band [enableSort]="true" [enableQBE]="true" [enableButtonBar]="true" [enableAddRecord]="false" [enableDeleteRecord]="true">
                     <queryband class="form-group">
                         <browse-queryband  #customQueryBand [queryFields]="listOfColumns" [(queryData)]="queryData">
                         </browse-queryband>
                     </queryband>
-                <custombuttonbar>
-                    <button class="regularButton" style="width:70px;" (click)="addRecord()">Add</button>
-                </custombuttonbar>                </query-band>
-                <datagrid [height]="'calc(100% - 90px)'"
+                    <custombuttonbar>
+                        <button class="regularButton" style="width:70px;" (click)="addRecord()">Add</button>
+                    </custombuttonbar>
+                </query-band>
+                <datagrid
                         [model]="model" 
                         [selectionMode]="'multiple,row'"
                         [columns]="columnDefs"
