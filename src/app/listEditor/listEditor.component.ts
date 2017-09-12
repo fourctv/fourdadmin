@@ -103,9 +103,7 @@ export class ListEditorComponent implements ICustomModalComponent, AfterContentI
     }
 
     update4DList() {
-        this.fourD.call4DRESTMethod('REST_Update4DList',
-            {listName:this.selectedListName, listValues:JSON.stringify({items:this.listItems})})
-            .subscribe();
+        this.fourD.update4DList(this.selectedListName, this.listItems);
     }
 
 
