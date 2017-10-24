@@ -49,7 +49,7 @@ export class FourDAdminComponent implements AfterContentInit {
 
     constructor (public router:Router, private http:Http, private modal: Modal, private viewref: ViewContainerRef) {
         FourDInterface.http = http;
-        if (window.location.hostname === 'localhost') {
+        if (window.location.hostname === 'localhost' && window.location.port === "4200") {
             FourDInterface.fourDUrl = 'http://www.vakeano.com';   
             //FourDInterface.fourDUrl = 'http://localhost:8080';   
         } else {

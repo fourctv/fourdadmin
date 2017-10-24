@@ -115,14 +115,14 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
     hideConfig() {
         this.hideBrowseConfig = true;
         this.currentGridHeight = 'calc(100% - 30px)';
-        this.recordList.windowResized(null)
+        this.recordList.theGrid.resize();
         this.recordList.refreshGrid();
     }
 
     showConfig() {
         this.hideBrowseConfig = false;
         this.currentGridHeight = 'calc(100% - 330px)';
-        this.recordList.windowResized(null);
+        this.recordList.theGrid.resize();
         this.recordList.refreshGrid();
     }
 

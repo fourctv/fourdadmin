@@ -63,12 +63,24 @@ export class BrowseInputField {
         this.currentRecord[this.inputField.name] = v;
     }
 
-    @Input() get dateField():Date {
-        return this.currentRecord.get(this.inputField.name);
+    @Input() get dateField():String {
+        // need to deal with how browsers handle 'date' input fields, which is not really supported, so we treat it as a string input for now
+        let value:string;
+        let dateValue: any = this.currentRecord[this.inputField.name];
+        if (typeof(dateValue) === 'string') {
+            value = dateValue;
+        } else {
+            value = dateValue.getFullYear().toString()+'-';
+            if (dateValue.getMonth()<9) value +='0';
+            value+= (dateValue.getMonth()+1).toString()+'-';
+            if (dateValue.getDate()<10) value +='0';
+            value+= dateValue.getDate().toString();
+        }
+        return value;
     }
-    set dateField(v:Date) {
-        this.currentRecord.set(this.inputField.name, v);
-        this.currentRecord[this.inputField.name] = new Date(v);
+    set dateField(v:String) {
+        this.currentRecord.set(this.inputField.name, new Date(v.replace(/-/g,'\/')));
+        this.currentRecord[this.inputField.name] = this.currentRecord.get(this.inputField.name);
     }
 
     @Input() get objectField():string {
