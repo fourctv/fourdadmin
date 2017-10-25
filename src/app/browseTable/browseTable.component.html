@@ -6,7 +6,7 @@
     </div>
     <div class="container-fluid" style="margin-left:10px; height: calc(100% - 65px)">
         <div class="row" [hidden]="hideBrowseConfig">
-            <div class="col-sm-2" style="border-style: solid; border-width: thin; padding-bottom: 4px;">
+            <div class="col-sm-2 block">
                 <h4>Select Table</h4>
                 <table  class="listTable">
                     <tbody class="listBody">
@@ -16,7 +16,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-sm-2" style="border-style: solid; border-width: thin; padding-bottom: 4px;">
+            <div class="col-sm-2 block">
                 <nav id="nav">
                     <ul id="navigation">
                         <li style="margin-left: -40px;"><h4>{{listedTable}}&nbsp;<span *ngIf="listedTable.length > 0">&raquo;</span></h4>
@@ -26,24 +26,27 @@
                         </li>
                     </ul>
                 </nav>
-                <table class="listTable" style="height: 228px;">
+                <table class="listTable">
                     <tbody class="listBody">
                         <tr *ngFor='let field of listOfFields' draggable="true" style="cursor: move;" (dragstart)="startDrag($event,'field')">
                             <td class="listItem">{{field.name}}</td>
                         </tr>
                     </tbody>
                 </table>
-                <label style="font-style: italic;">* drag fields to columns</label>
             </div>
-            <div class="col-sm-2" style="border-style: solid; border-width: thin; padding-bottom: 4px;">
+            <div class="col-sm-2 block">
                 <h4>Columns</h4>
-                <table class="listTable">
+                <table class="listTable" style="height: 210px;">
                     <tbody class="listBody" (dragenter)="allowDrop($event)" (dragover)="allowDrop($event)" (dragend)="disableDrop($event)" (dragleave)="disableDrop($event)" (drop)="handleDrop($event)">
                         <tr *ngFor='let column of listOfColumns' (click)="selectColumn($event)" draggable="true" (drop)="handleDrop($event)" (dragstart)="startDrag($event,'column')" (dragleave)="disableDrop($event)">
                             <td class="listItem">{{column.name}}</td>
                         </tr>
                     </tbody>
                 </table>
+                <div style="margin-top: 10px;margin-bottom: 5px; display: flex; justify-content: space-around;">
+                    <button class="regularButton" (click)="loadConfig()" [disabled]="noTableSelected()">Load Config</button>
+                    <button class="regularButton" (click)="saveConfig()" [disabled]="noTableSelected()">Save Config</button>
+                </div>
             </div>
             <div class="col-sm-4" style="border-style: solid; border-width: thin; padding-bottom: 4px;" [hidden]="!currentField.name">
                 <h4>Column Info</h4>

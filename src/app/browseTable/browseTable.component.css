@@ -1,3 +1,12 @@
+.block {
+    border-style: solid; 
+    border-width: thin; 
+    padding-bottom: 4px; 
+    display:flex; 
+    flex-direction: column; 
+    height: 289px;
+}
+
 .listTable {
     border: 1px solid black;
     border-collapse: collapse;

@@ -37,10 +37,10 @@ export class FourDAdminComponent implements AfterContentInit {
             routePath: '/listEditor',
             title: 'List Editor'
         },
-        {
+      /*  {
             routePath: '/userManager',
             title: 'User Manager'
-        }
+        }*/
     ];
 
     public get currentUser(): string {

@@ -48,7 +48,7 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
             actions:['Maximize', 'Minimize', 'Close'], position: {top:100, left:50},selfCentered:true,
             title:'Browse Table',
             isResizable:true,
-            width:1000, height:800
+            width:1200, height:800, minWidth: 1200, minHeight: 700
         };
 
     public dialog: ModalDialogInstance;
@@ -81,7 +81,7 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
        
         // the columns for the datagrid
     public columnDefs = [
-        { title: 'Record ID', field: 'RecordID'}
+        { title: 'Record ID', field: 'RecordID', width:''}
     ];
 
     //
@@ -124,6 +124,23 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
         this.currentGridHeight = 'calc(100% - 330px)';
         this.recordList.theGrid.resize();
         this.recordList.refreshGrid();
+    }
+
+    saveConfig() {
+        if (this.currentTable != '') {
+            localStorage.setItem('4Dbrowse'+this.currentTable, JSON.stringify(this.listOfColumns));
+        }
+    }
+
+    loadConfig() {
+        if (this.currentTable != '') {
+            let config = localStorage.getItem('4Dbrowse'+this.currentTable);
+            if (config && config != '') {
+                // we have a saved configuration, use it...
+                this.listOfColumns = JSON.parse(config);
+                this.mapColumnsToGrid(); // update grid then
+            }
+        }
     }
 
     selectTable(event) {
@@ -262,13 +279,14 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
         this.columnDefs = [];
         for (var index = 0; index < this.listOfColumns.length; index++) {
             var element = this.listOfColumns[index];
-            this.columnDefs.push({title: element.title, field: element.name});
+            this.columnDefs.push({title: element.title, field: element.name, width: (element['width'])?element['width']:''});
         }
 
        // this.theGrid.setColumnConfig(this.columnDefs);
         this.theGrid.setExternalDataSource(this.dataSource, this.columnDefs);
         this.recordList.clearQuery(); // clear any previous query
         this.theGrid.loadData(); // and clear the grid
+        this.theGrid.gridObject.bind("columnResize", () => {this.saveColumnConfig()});
     }
 
     showRelatedTable(event) {
@@ -293,6 +311,19 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
         newModel.fields = <any>this.listOfFields;
         newModel.clearRecord();
         this.modal.openInside(<any>this.editWindow, this.viewref, newModel, this.editWindow['dialogConfig']); // open edit dialog
+
+    }
+
+    noTableSelected():boolean {return this.currentTable === '';}
+
+
+    private saveColumnConfig() {
+        if (this.currentTable != '') {
+            for (var i = 0; i < this.listOfColumns.length; i++) {
+                if (this.theGrid.gridObject.columns[i]['width'] && this.theGrid.gridObject.columns[i]['width'] > 0)
+                this.listOfColumns[i]['width'] = this.theGrid.gridObject.columns[i]['width'];
+            }
+        }
 
     }
 
