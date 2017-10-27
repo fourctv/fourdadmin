@@ -21,13 +21,23 @@ export class LoginComponent {
     @Input() public showError:string = '';
     @Input() public fourDVersion:string = '';
     @Input() public webAppVersion:string = Config.APP_VERSION;
-
+    public get serverURL():string {return this._serverURL}
+    public set serverURL(v:string) {
+        this._serverURL = v;
+        FourDInterface.fourDUrl = v;
+        this.fourD.call4DRESTMethod('REST_GetApplicationVersion',{})
+        .subscribe((v) => {
+            this.fourDVersion = v.text();
+            this.webAppVersion = Config.APP_VERSION + ' - 4D '+this.fourDVersion;
+        });
+}
+    private _serverURL:string = "http://localhost:8080";
 
     constructor( private fourD:FourDInterface, public router:RouterExtensions ) {
         this.fourD.call4DRESTMethod('REST_GetApplicationVersion',{})
             .subscribe((v) => {
                 this.fourDVersion = v.text();
-                this.webAppVersion += ' - v'+this.fourDVersion;
+                this.webAppVersion = Config.APP_VERSION + ' - 4D '+this.fourDVersion;
             });
     }
 

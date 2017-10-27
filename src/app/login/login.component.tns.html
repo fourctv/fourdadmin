@@ -2,6 +2,8 @@
 </ActionBar>
 <StackLayout class="form" style="padding-top:40" padding="10">
   <Image src="~/assets/icons/LogoPascal.png" style="width:120;height:120"></Image>
+  <Label text="4D Server" class="label"></Label>
+  <TextField [(ngModel)]="serverURL" hint="4D server url" margin="10" autocorrect="false" autocapitalizationType="none" class="input"></TextField>
   <Label text="User Name" class="label"></Label>
   <TextField [(ngModel)]="username" hint="login user name" margin="10" autocorrect="false" autocapitalizationType="none" class="input"></TextField>
   <Label text="Password" class="label"></Label>

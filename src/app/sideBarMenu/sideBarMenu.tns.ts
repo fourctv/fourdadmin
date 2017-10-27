@@ -1,8 +1,8 @@
 import { Component, Input, Output, ChangeDetectionStrategy, ViewChild, EventEmitter, OnInit } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular';
 
-import { RadSideDrawerComponent } from "nativescript-telerik-ui/sidedrawer/angular";
-import { SideDrawerLocation } from "nativescript-telerik-ui/sidedrawer";
+import { RadSideDrawerComponent } from "nativescript-pro-ui/sidedrawer/angular";
+import { SideDrawerLocation } from "nativescript-pro-ui/sidedrawer";
 import { isAndroid, isIOS } from 'platform';
 
 @Component({
@@ -54,10 +54,10 @@ export class SideBarMenu implements OnInit {
             routePath: '/listEditor',
             title: 'List Editor'
         },
-        {
+       /* {
             routePath: '/userManager',
             title: 'User Manager'
-        }
+        }*/
     ];
 
     @Input() pageTitle:string = '';
