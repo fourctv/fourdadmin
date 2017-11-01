@@ -20,6 +20,21 @@ import { BlankPage } from './blankPage';
 
 
 export class FourDAdminComponent implements AfterContentInit {
+    public menuList = [
+        {
+            routePath: '/browseTable',
+            title: 'Browse Table'
+        },
+        {
+            routePath: '/listEditor',
+            title: 'List Editor'
+        },
+      /*  {
+            routePath: '/userManager',
+            title: 'User Manager'
+        }*/
+    ];
+
     public get currentUser(): string {
         return (FourDInterface.authentication) ? FourDInterface.currentUser : '?';
     }

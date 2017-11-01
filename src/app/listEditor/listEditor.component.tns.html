@@ -1,52 +1,51 @@
-<side-bar pageTitle="List Editor">
-    <ScrollView orientation="vertical" margin="15">
-        <StackLayout>
-            <StackLayout orientation="vertical" marginBottom="20" horizontalAlignment="center">
-                <Label text="Select a 4D List"  class="h2"></Label>
-                    <GridLayout orientation="vertical" rows="auto, *, auto" horizontalAlignment="center" width="300">
-                        <RadListView row="1" [items]="listNames" borderWidth=".5" selectionBehavior="Press" (itemSelected)="selectList($event.index)"
-                            height="100">
-                            <ng-template tkListItemTemplate let-item="item" let-i="index">
-                                <Label class="nameLabel" [text]="item" [class.highlight]="i===selectedItemIndex" paddingLeft="5" paddingRight="5"></Label>
-                            </ng-template>
-                        </RadListView>
-                    </GridLayout>
-            </StackLayout>
-
-            <StackLayout [visibility]="(selectedListName === '')?'collapse':'visible'">
-                <StackLayout class="hr-light"></StackLayout>
-                <StackLayout orientation="vertical" marginTop="15" marginBottom="20" horizontalAlignment="center" width="500">
-                    <Label text="List Items:" textWrap="true" class="h2"></Label>
-                    <GridLayout orientation="vertical" rows="auto, *, auto">
-                        <RadListView row="1" [items]="listItems" borderWidth=".5" selectionBehavior="Press" (itemSelected)="selectItem($event.index)"
-                            itemReorder="true" (itemReordered)="onItemReordered($event)" height="300">
-                            <ng-template tkListItemTemplate let-item="item" let-i="index">
-                                <Label class="nameLabel" [text]="item" [class.highlight]="i===selectedItemIndex" paddingLeft="5" paddingRight="5"></Label>
-                            </ng-template>
-                        </RadListView>
-                    </GridLayout>
-<!--
-                    <ListView [items]="listItems" borderWidth=".5" (itemTap)="selectItem($event.index)" class="list-group" itemReorder="true"
-                        (itemReordered)="onItemReordered($event)" verticalAlignment="stretch">
-                        <ng-template let-item="item" let-i="index">
-                                <Label [text]="item" class="label" [class.highlight]="i===selectedItemIndex" marginLeft="5" marginRight="5"></Label>
+<ActionBar title="List Editor" icon="" class="action-bar">
+    <ActionItem (tap)="onNavBtnTap()" ios.position="left">
+        <Button text="< Back" android.systemIcon="ic_menu_back"></Button>
+    </ActionItem>  
+</ActionBar>
+  
+<ScrollView orientation="vertical" margin="15">
+    <StackLayout>
+        <StackLayout orientation="vertical" marginBottom="20" horizontalAlignment="center">
+            <Label text="Select a 4D Choice List"  class="h3"></Label>
+                <GridLayout orientation="vertical" rows="auto, *, auto" horizontalAlignment="center" width="300">
+                    <RadListView class="list-group" row="1" [items]="listNames" borderWidth=".5" selectionBehavior="Press" (itemTap)="selectList($event.index)"
+                        height="100">
+                        <ng-template tkListItemTemplate let-item="item" let-i="index">
+                            <Label class="label" [text]="item" [class.highlight]="i===selectedListIndex" paddingLeft="5" paddingRight="5"></Label>
                         </ng-template>
-                    </ListView>
--->
-                </StackLayout>
-                <StackLayout class="hr-light"></StackLayout>
-                <StackLayout class="form" orientation="horizontal" marginTop="15">
-                    <Label text="Selected List Item: " textWrap="true" class="h2" marginRight="10"></Label>
-                    <TextField [(ngModel)]="selectedItemValue" hint="list item" width="400" autocorrect="false" autocapitalizationType="none"
-                        class="input  input-border"></TextField>
-                </StackLayout>
-                <StackLayout class="form" orientation="horizontal" marginTop="15" horizontalAlignment="center">
-                    <Button text="Change" (tap)="changeItem()" marginLeft="15" width="120" class="btn btn-primary btn-active btn-rounded-lg"></Button>
-                    <Button text="Add" (tap)="addItem()" marginLeft="15" width="120" class="btn btn-primary btn-active btn-rounded-lg"></Button>
-                    <Button text="Delete" (tap)="deleteItem()" marginLeft="15" width="120" class="btn btn-primary btn-active btn-rounded-lg"></Button>
-
-                </StackLayout>
-            </StackLayout>
+                    </RadListView>
+                </GridLayout>
         </StackLayout>
-    </ScrollView>
-</side-bar>
+
+        <StackLayout [visibility]="(selectedListName === '')?'collapse':'visible'">
+            <StackLayout class="hr-light"></StackLayout>
+            <StackLayout orientation="vertical" marginTop="15" marginBottom="20" horizontalAlignment="center" width="500">
+                <Label text="{{selectedListName}} items:" textWrap="true" class="h3"></Label>
+                <GridLayout orientation="vertical" rows="auto, *, auto">
+                    <RadListView class="list-group" row="1" [items]="listItems" borderWidth=".5" selectionBehavior="Press" (itemTap)="selectItem($event.index)"
+                        itemReorder="true" (itemReordered)="onItemReordered($event)" height="300">
+                        <ng-template tkListItemTemplate let-item="item" let-i="index">
+                            <Label class="label" [text]="item" [class.highlight]="i===selectedItemIndex" paddingLeft="5" paddingRight="5"></Label>
+                        </ng-template>
+                    </RadListView>
+                </GridLayout>
+            </StackLayout>
+
+            <StackLayout class="hr-light"></StackLayout>
+
+            <StackLayout class="form" orientation="horizontal" marginTop="15">
+                <Label text="Selected List Item: " textWrap="true" class="h3" marginRight="10"></Label>
+                <TextField [(ngModel)]="selectedItemValue" hint="list item" width="400" autocorrect="false" autocapitalizationType="none"
+                    class="input  input-border"></TextField>
+            </StackLayout>
+            
+            <GridLayout class="form" marginTop="15" columns="auto, auto, auto">
+                <Button text="Change" (tap)="changeItem()" col="0" class="btn btn-active btn-rounded-sm"></Button>
+                <Button text="Add" (tap)="addItem()" col="1"  class="btn btn-active btn-rounded-sm"></Button>
+                <Button text="Delete" (tap)="deleteItem()" col="2" class="btn btn-active btn-rounded-sm"></Button>
+
+            </GridLayout>
+        </StackLayout>
+    </StackLayout>
+</ScrollView> 

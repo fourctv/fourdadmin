@@ -107,7 +107,7 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
             let resultJSON = response.json();
             this.numOfTables = resultJSON.tableCount;
             this.listOfTables = resultJSON.tableList;
-
+            this.listOfTables.sort();
             this.recordList.queryBand.switchState();
         });
     }

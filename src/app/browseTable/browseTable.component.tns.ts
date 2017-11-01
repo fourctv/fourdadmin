@@ -1,7 +1,8 @@
 import { Component, AfterContentInit, ViewContainerRef, Input, ViewChild } from '@angular/core';
+import { RouterExtensions } from 'nativescript-angular';
 
 //import { LogService } from '../core/services/logging/log.service';
-
+import timer = require("tns-core-modules/timer");
 import { FourDInterface } from '../js44D/js44D/JSFourDInterface';
 import { FourDModel } from '../js44D/js44D/JSFourDModel';
 import { FourDCollection } from '../js44D/js44D/JSFourDCollection';
@@ -23,6 +24,7 @@ export class FieldDescription {
     field?: string;
     title?:string;
     quickQuery?:boolean;
+    index?:number;
 }
 
 
@@ -38,6 +40,8 @@ export class BrowseTableComponent implements AfterContentInit {
 
     @Input() numOfTables = 0;
     @Input() listOfTables:Array<string> = [];
+    @Input() showTableList:string = 'visible';
+    @Input() showFieldList:string = 'collapse';
     @Input() currentTable = '';
     @Input() listedTable = '';
     @Input() listOfFields:Array<FieldDescription> = [];
@@ -62,15 +66,16 @@ export class BrowseTableComponent implements AfterContentInit {
     //
     public model = FourDModel; // the record datamodel to use 
 
+    public selectedFieldIndex = -1;
+    public selectedColumnIndex = -1;
 
     private selectedRow:any = null;
     private selectedColumn:any = null;
-    private selectedColumnIndex = -1;
-
+    
     private totalRecordCount:number = 0;
     private models = [];
 
-    constructor ( private fourD:FourDInterface, /*private logger: LogService,*/ private viewref: ViewContainerRef) {
+    constructor ( private fourD:FourDInterface, private router:RouterExtensions, private viewref: ViewContainerRef) {
 
     }
 
@@ -80,35 +85,21 @@ export class BrowseTableComponent implements AfterContentInit {
             let resultJSON = response.json();
             this.numOfTables = resultJSON.tableCount;
             this.listOfTables = resultJSON.tableList;
+            this.listOfTables.sort();
 
         });
     }
 
-    hideConfig() {
-        this.hideBrowseConfig = true;
-        this.currentGridHeight = 'calc(100% - 20px)';
-    }
-
-    showConfig() {
-        this.hideBrowseConfig = false;
-        this.currentGridHeight = 'calc(100% - 320px)';
-    }
-
-    selectTable(event) {
-        if (this.selectedRow) {
-            this.selectedRow.classList.remove('selectedItem');
-        }
-        
-        let selectRow = event.currentTarget.rowIndex;
+    selectTable(selectRow) {
+       
         if (selectRow < this.numOfTables) {
-            this.selectedRow = event.target;
+            this.showTableList = 'collapse';
             this.currentTable = this.listOfTables[selectRow];
             this.listedTable = this.currentTable;
             this.fourD.call4DRESTMethod('REST_GetFieldsInTable',{TableName:this.listOfTables[selectRow]})
             .subscribe(response => {
                 let resultJSON = response.json();
                 this.listOfFields = resultJSON.fieldList;
-                this.selectedRow.classList.add('selectedItem');
 
                 this.model.prototype.tableName = this.currentTable;
                 this.model.prototype.fields = <any>this.listOfFields;
@@ -120,6 +111,7 @@ export class BrowseTableComponent implements AfterContentInit {
                 this.queryData = {};
                 for (var index = 0; index < this.listOfFields.length; index++) {
                     var element = this.listOfFields[index];
+                    element.index = index;
                     element.field = element.longname;
                     element.title = element.name;
                    if (element.indexed) {
@@ -134,95 +126,61 @@ export class BrowseTableComponent implements AfterContentInit {
                     
                 }
 
-                this.mapColumnsToGrid(); // update datagrid columns
+                this.showFieldList = 'visible';
             });
            
         }
     }
 
-    selectColumn(event) {
-        if (this.selectedColumn) {
-            this.selectedColumn.classList.remove('selectedItem');
-        }
-        
-        this.selectedColumnIndex = event.currentTarget.rowIndex;
-        if (this.selectedColumnIndex < this.listOfColumns.length) {
-            this.selectedColumn = event.target;
-            this.selectedColumn.classList.add('selectedItem');
-            this.currentField = this.listOfColumns[this.selectedColumnIndex];
+    selectField(index) {
+        this.selectedFieldIndex = index;
+        console.log('itemtap: '+this.selectedFieldIndex);
+    }
+
+    selectColumn(index) {
+        if (index >= 0 && index < this.listOfColumns.length) {
+            this.selectedColumnIndex = index;
+            this.selectedColumn = this.listOfColumns[index]
+            console.log('column:'+this.selectedColumnIndex+', field:'+this.selectedColumn.name);
         } else {
             this.selectedColumnIndex = -1;
         }
     }
 
+    itemReordered(event) {
+        timer.setTimeout( () => {
+            event.object.refresh();
+            this.selectedColumnIndex = -1;
+        }, 50);
 
-    startDrag(event, type) {
-        event.effectAllowed = 'copy';
-        event.dataTransfer.setData('type',type);
-        event.dataTransfer.setData('row', event.currentTarget.rowIndex);
-   }
-
-    allowDrop(event) {
-        if (event.preventDefault)  event.preventDefault(); // Necessary. Allows us to drop.
-        if (event.stopPropagation)  event.stopPropagation(); 
-
-
-        if (event.type === 'dragenter') {
-            event.target.classList.add('droppable');
-            event.dataTransfer.dropEffect = 'copy';  // See the section on the DataTransfer object.
-        }
-        return false;    
     }
 
-    disableDrop(event) {
-        if (event.stopPropagation)  event.stopPropagation(); 
-        event.target.classList.remove('droppable');
-    }
-
-    handleDrop(event) {
-        if (event.stopPropagation)  event.stopPropagation(); 
-        
-        this.disableDrop(event);
-
-        let source = event.dataTransfer.getData('type');
-        let row = event.dataTransfer.getData('row');
-        let element = this.listOfFields[row];
-        element.quickQuery = false;
-        if (event.currentTarget.localName === 'tbody') {
-            //this.logger.debug('append => row:'+row+', from:'+source); 
-            if (source === 'field') {
-                this.listOfColumns.push(element);
-            } else {
-                this.listOfColumns.push(element);
-                this.listOfColumns.splice(row,1);
-            }
-        } else {
-            //this.logger.debug('move => row:'+row+', before:'+event.currentTarget.rowIndex+', from:'+source); 
-            if (source === 'field') {
-                this.listOfColumns.splice(event.currentTarget.rowIndex,0,element);
-            } else {
-                let moveToIndex = event.currentTarget.rowIndex;
-                let item = this.listOfColumns.splice(row,1);
-                if (row < moveToIndex) {
-                    // moving up...
-                    this.listOfColumns.splice(event.currentTarget.rowIndex-1,0,item[0]);
+    addField() {
+        if (this.selectedFieldIndex >= 0) {
+            var element = this.listOfFields[this.selectedFieldIndex];
+            let dupe = false;
+            this.listOfColumns.forEach(column => {
+                if (column.name === element.name) dupe = true;
+            });
+            if (!dupe) {
+                element.field = element.longname;
+                element.title = element.name;
+                if (element.indexed) {
+                    element.quickQuery = true;
                 } else {
-                    // moving down
-                    this.listOfColumns.splice(event.currentTarget.rowIndex,0,item[0]);
+                    element.quickQuery = false;
                 }
+                this.listOfColumns.push(element);
             }
         }
-
-        this.mapColumnsToGrid(); // update datagrid columns
     }
 
-    deleteField() {
+    removeField() {
         if (this.selectedColumnIndex >= 0) {
             this.listOfColumns.splice(this.selectedColumnIndex,1);
             this.selectedColumnIndex = -1;
             this.selectedColumn = null;
             this.currentField = new FieldDescription();
-            this.mapColumnsToGrid();
         }
     }
 
@@ -261,6 +219,8 @@ export class BrowseTableComponent implements AfterContentInit {
 
     }
 
-   
+    onNavBtnTap() {
+        this.router.navigate(['/back'], { clearHistory: true }); 
+    }
 
 }

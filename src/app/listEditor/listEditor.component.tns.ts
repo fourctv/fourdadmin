@@ -1,4 +1,6 @@
 import { Component, Input, AfterContentInit, ChangeDetectionStrategy } from '@angular/core';
+import { RouterExtensions } from 'nativescript-angular';
+import timer = require("tns-core-modules/timer");
 
 import { FourDInterface } from '../js44D/js44D/JSFourDInterface';
 
@@ -8,7 +10,7 @@ import { FourDInterface } from '../js44D/js44D/JSFourDInterface';
     templateUrl: 'listEditor.component.html',
     styles: [`
         .highlight {
-            background-color: #eee;
+            background-color: #00FF00;
         }
     `],
     changeDetection: ChangeDetectionStrategy.Default
@@ -19,11 +21,12 @@ export class ListEditorComponent implements AfterContentInit {
     public listCount = 0;
     @Input() public listNames = [];
     public selectedListName = '';
+    public selectedListIndex = -1;
     @Input() public listItems = [];
     public selectedItemIndex = -1;
     @Input() public selectedItemValue: string = '';
 
-    constructor(private fourD: FourDInterface) {
+    constructor(private fourD: FourDInterface, private router:RouterExtensions) {
 
     }
 
@@ -40,7 +43,7 @@ export class ListEditorComponent implements AfterContentInit {
 
     selectList(listIndex) {
         this.selectedItemValue = '';
-        this.selectedItemIndex = -1;
+        this.selectedListIndex = listIndex;
   
         this.selectedListName = this.listNames[listIndex];
         let body: any = { list: this.selectedListName };
@@ -88,7 +91,9 @@ export class ListEditorComponent implements AfterContentInit {
         this.update4DList();
         this.selectedItemValue = '';
         this.selectedItemIndex = -1;
-    }
+        timer.setTimeout( () => {
+            event.object.refresh();
+        }, 50);    }
 
     update4DList() {
         this.fourD.call4DRESTMethod('REST_Update4DList', { listName: this.selectedListName, listValues: JSON.stringify({ items: this.listItems }) })
@@ -99,4 +104,9 @@ export class ListEditorComponent implements AfterContentInit {
         this.listItems = [];
         copy.forEach(element => { this.listItems.push(element); });
     }
+
+    onNavBtnTap() {
+        this.router.navigate(['/back'], { clearHistory: true }); 
+    }
+
 }

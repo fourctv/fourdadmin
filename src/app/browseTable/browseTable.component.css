@@ -30,10 +30,20 @@
     color: white;
 }
 
+
+.highlight {
+    background-color: #00FF00;
+}
+
 .droppable {
     border: 2px dashed gray;
 }
 
+.icon {
+    font-family: FontAwesome, fontawesome;
+    font-size: 24;
+ }
+ 
 /* Main Navigation */
 
  
