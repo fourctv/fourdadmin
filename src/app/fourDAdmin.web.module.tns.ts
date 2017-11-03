@@ -1,5 +1,6 @@
 import { NgModule, NO_ERRORS_SCHEMA, NgModuleFactoryLoader } from '@angular/core';
 import { Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 // nativescript
 import { NSModuleFactoryLoader } from 'nativescript-angular/router';
@@ -55,7 +56,8 @@ const routes: Routes = [
         NativeScriptRouterModule,
         NativeScriptRouterModule.forRoot(<any>routes),
         NativeScriptUISideDrawerModule,
-        NativeScriptUIListViewModule
+        NativeScriptUIListViewModule,
+        HttpClientModule
     ],
     exports: [
         NativeScriptModule,

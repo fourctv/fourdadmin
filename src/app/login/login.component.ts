@@ -31,8 +31,8 @@ export class LoginComponent implements ICustomModalComponent {
 
 
     constructor(public dialog: ModalDialogInstance, private fourD:FourDInterface) {
-        this.fourD.call4DRESTMethod('REST_GetApplicationVersion',{})
-            .subscribe((v) => {this.fourDVersion = v.text();});
+        this.fourD.call4DRESTMethod('REST_GetApplicationVersion', {}, {responseType: 'text'})
+            .subscribe((v) => {this.fourDVersion = v;});
     }
 
     login() {

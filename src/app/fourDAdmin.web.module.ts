@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule }      from '@angular/common';
-import { HttpModule }      from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
@@ -35,7 +35,7 @@ let routerModule = RouterModule.forRoot(routes);
     BrowserModule,  
     FormsModule,
     CommonModule,
-    HttpModule,
+    HttpClientModule,
     BsDropdownModule.forRoot(),
     routerModule,
     JS44DModule, ModalModule

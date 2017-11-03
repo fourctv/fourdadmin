@@ -4,50 +4,83 @@
     </ActionItem>
 </ActionBar>
 
-    <StackLayout class="container-content" padding="10" width="100%" height="100%"  [visibility]="showTableList">
-            <StackLayout margin="12">
-                <Label class="h3" text="Select the table to browse" textWrap="true"></Label>
-            </StackLayout>
-
-            <ListView class="list-group" [items]="listOfTables" (itemTap)="selectTable($event.index)" separatorColor="white" width="100%" height="100%">
-                <ng-template let-item="item">
-                         <Label class="label"  [text]='item'></Label>
-                </ng-template>
-            </ListView>
+<StackLayout class="container-content" padding="10" width="100%" height="100%" [visibility]="showTableList">
+    <StackLayout margin="12">
+        <Label class="h3" text="Select the table to browse" textWrap="true"></Label>
     </StackLayout>
 
-    <StackLayout class="container-content" padding="10" width="100%" height="100%"  [visibility]="showFieldList">
-        <GridLayout rows="20, * , 30" width="100%" height="100%">
-            <Label row="0" class="h3" text="Select Fields to Browse" textWrap="true"></Label>
+    <ListView class="list-group" [items]="listOfTables" (itemTap)="selectTable($event.index)" separatorColor="white" width="100%"
+        height="100%">
+        <ng-template let-item="item">
+            <Label class="label" [text]='item'></Label>
+        </ng-template>
+    </ListView>
+</StackLayout>
 
-            <DockLayout padding="10" width="100%" row="1">
-                <StackLayout dock="left" width="40%" height="100%">
-                    <Label class="h3" text="Table Fields" textWrap="true"></Label>
-                    <RadListView class="list-group" width="100%" [items]="listOfFields" selectionBehavior="Press" (itemSelected)="selectField($event.index)" height="100%" style="border-style:solid;border-width: 1px ">
-                        <ng-template tkListItemTemplate let-item="item" let-i="index">
-                            <Label class="body"  [text]="item.name" [class.highlight]="i===selectedFieldIndex" paddingLeft="5"></Label>
-                        </ng-template>
-                    </RadListView>                   
-                </StackLayout>
-                <StackLayout dock="right" width="40%" height="100%" >
-                    <Label class="h3" text="Fields on Browse" textWrap="true"></Label>
-                    <RadListView class="list-group" width="100%" [items]="listOfColumns" selectionBehavior="Press" (itemSelected)="selectColumn($event.index)" itemReorder="true"  (itemReordered)="itemReordered($event)" height="100%" style="border-style:solid;border-width: 1px ">
-                        <ng-template tkListItemTemplate let-item="item" let-i="index">
-                            <Label class="body" [text]="item.title" [class.highlight]="i===selectedColumnIndex" paddingLeft="5"></Label>
-                        </ng-template>
-                    </RadListView>
-                </StackLayout>
-                <StackLayout dock="bottom" verticalAlignment="center" horizontalAlignment="center" stretchLastChild="true" height="100%">
-                    <Label text="&#xf060;" class="icon" (tap)="removeField()" marginBottom="10"></Label>
-                    <Label text="&#xf061;" class="icon" (tap)="addField()"></Label>
-                </StackLayout>
-                
-            </DockLayout>
+<StackLayout class="container-content" padding="10" width="100%" height="100%" [visibility]="showFieldList">
+    <GridLayout rows="20, * , 30" width="100%" height="100%">
+        <Label row="0" class="h3" text="Select Fields to Browse" textWrap="true"></Label>
 
-            <StackLayout orientation="horizontal" row="2" horizontalAlignment="center">
-                <Button text="Browse" (tap)="doBrowse()" col="0" class="btn btn-primary btn-active btn-outline"></Button>
+        <DockLayout padding="10" width="100%" row="1">
+            <StackLayout dock="left" width="40%" height="100%">
+                <Label class="h3" text="{{listedTable}} Fields" textWrap="true"></Label>
+                <RadListView class="list-group" width="100%" [items]="listOfFields" selectionBehavior="Press" (itemSelected)="selectField($event.index)"
+                    height="100%" style="border-style:solid;border-width: 1px ">
+                    <ng-template tkListItemTemplate let-item="item" let-i="index">
+                        <Label class="body" [text]="item.name" [class.highlight]="i===selectedFieldIndex" paddingLeft="5"></Label>
+                    </ng-template>
+                </RadListView>
             </StackLayout>
-        </GridLayout>
-     </StackLayout> 
+            <StackLayout dock="right" width="40%" height="100%">
+                <Label class="h3" text="Fields on Browse" textWrap="true"></Label>
+                <RadListView class="list-group" width="100%" [items]="displayListOfColumns" selectionBehavior="Press" (itemSelected)="selectColumn($event.index)"
+                    itemReorder="true" (itemReordered)="itemReordered($event)" height="100%" style="border-style:solid;border-width: 1px ">
+                    <ng-template tkListItemTemplate let-item="item" let-i="index">
+                        <Label class="body" [text]="item.title" [class.highlight]="i===selectedColumnIndex" paddingLeft="5"></Label>
+                    </ng-template>
+                </RadListView>
+            </StackLayout>
+            <StackLayout dock="bottom" verticalAlignment="center" horizontalAlignment="center" stretchLastChild="true" height="100%">
+                <Label text="&#xf060;" class="icon" (tap)="removeField()" marginBottom="10"></Label>
+                <Label text="&#xf061;" class="icon" (tap)="addField()"></Label>
+            </StackLayout>
+
+        </DockLayout>
+
+        <StackLayout orientation="horizontal" row="2" horizontalAlignment="center">
+            <Button text="Browse" (tap)="doBrowse()" col="0" class="btn btn-primary btn-active btn-outline"></Button>
+        </StackLayout>
+    </GridLayout>
+</StackLayout>
 
 
+<StackLayout class="container-content" padding="10" width="100%" height="100%" [visibility]="showBrowse">
+    <GridLayout rows="20, * , 30" width="100%" height="100%">
+        <Label class="h3" text="{{currentTable}} ({{totalRecordCount}})" textWrap="true" row="0"></Label>
+        <ScrollView orientation="horizontal" row="1" width="100%">
+            <GridLayout width="100%" rows="auto, *" borderWidth="1">
+                <GridLayout width="100%" columns="{{columnWidths}}" row="0" borderBottomWidth="1">
+                    <StackLayout *ngFor="let field of listOfColumns; let idx = index" col="{{idx}}">
+                        <Label class="body" [text]="field.title" paddingLeft="5" borderLeftWidth="1"></Label>
+                    </StackLayout>
+                </GridLayout>
+
+                <ListView class="list-group" row="1" width="100%" [items]="recordList" selectionBehavior="Press" (itemTap)="selectRecord($event.index)">
+                    <ng-template let-item="item">
+                        <GridLayout width="100%" columns="{{columnWidths}}">
+                            <StackLayout *ngFor="let field of listOfColumns; let idx = index" col="{{idx}}">
+                                <Label class="body" [text]="item[field.name]" paddingLeft="5" borderLeftWidth="1"></Label>
+                            </StackLayout>
+                        </GridLayout>
+                    </ng-template>
+                </ListView>
+
+            </GridLayout>
+        </ScrollView>
+
+        <StackLayout orientation="horizontal" row="2" horizontalAlignment="center">
+            <Button text="Query" (tap)="showQuery()" col="0" class="btn btn-primary btn-active btn-outline"></Button>
+        </StackLayout>
+    </GridLayout>
+
+</StackLayout>

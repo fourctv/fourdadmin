@@ -1,5 +1,5 @@
 import { Component, AfterContentInit, ViewContainerRef} from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { RouterExtensions } from 'nativescript-angular';
 
 import { Config } from '../common/index';
@@ -39,7 +39,7 @@ export class FourDAdminComponent implements AfterContentInit {
         return (FourDInterface.authentication) ? FourDInterface.currentUser : '?';
     }
 
-    constructor (public router:RouterExtensions, private http:Http, private viewref: ViewContainerRef) {
+    constructor (public router:RouterExtensions, private http:HttpClient, private viewref: ViewContainerRef) {
         FourDInterface.http = http;
         FourDInterface.fourDUrl = 'http://localhost:8080';
  //       FourDInterface.fourDUrl = 'http://54.191.46.243:8080';

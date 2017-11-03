@@ -9,7 +9,7 @@
         <StackLayout orientation="vertical" marginBottom="20" horizontalAlignment="center">
             <Label text="Select a 4D Choice List"  class="h3"></Label>
                 <GridLayout orientation="vertical" rows="auto, *, auto" horizontalAlignment="center" width="300">
-                    <RadListView class="list-group" row="1" [items]="listNames" borderWidth=".5" selectionBehavior="Press" (itemTap)="selectList($event.index)"
+                    <RadListView class="list-group" row="1" [items]="listNames" borderWidth=".5" selectionBehavior="Press" (itemSelected)="selectList($event.index)"
                         height="100">
                         <ng-template tkListItemTemplate let-item="item" let-i="index">
                             <Label class="label" [text]="item" [class.highlight]="i===selectedListIndex" paddingLeft="5" paddingRight="5"></Label>
@@ -23,7 +23,7 @@
             <StackLayout orientation="vertical" marginTop="15" marginBottom="20" horizontalAlignment="center" width="500">
                 <Label text="{{selectedListName}} items:" textWrap="true" class="h3"></Label>
                 <GridLayout orientation="vertical" rows="auto, *, auto">
-                    <RadListView class="list-group" row="1" [items]="listItems" borderWidth=".5" selectionBehavior="Press" (itemTap)="selectItem($event.index)"
+                    <RadListView class="list-group" row="1" [items]="listItems" borderWidth=".5" selectionBehavior="Press" (itemSelected)="selectItem($event.index)"
                         itemReorder="true" (itemReordered)="onItemReordered($event)" height="300">
                         <ng-template tkListItemTemplate let-item="item" let-i="index">
                             <Label class="label" [text]="item" [class.highlight]="i===selectedItemIndex" paddingLeft="5" paddingRight="5"></Label>

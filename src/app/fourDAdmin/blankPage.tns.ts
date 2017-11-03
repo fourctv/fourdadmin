@@ -9,16 +9,22 @@ import { FourDInterface } from '../js44D/js44D/JSFourDInterface';
   template: `
         <ActionBar title="FourD Admin" icon="" class="action-bar">
             <ActionItem  *ngFor="let item of menuList" (tap)="openApp(item)">
-                <Button [text]="item.title " class="action-item" paddingRight="10"></Button>
+                <Button [text]="item.title" class="action-item" paddingRight="10"></Button>
             </ActionItem>
             <ActionItem (tap)="doLogin()" ios.position="right">
-                <Button text="Logout " class="action-item"></Button>
+                <Label text="&#xf08b;" class="icon"></Label>
             </ActionItem>
         </ActionBar>
         <StackLayout padding="25">
           <Label class="body" text="Select function from the menu above" textWrap="true"></Label>
         </StackLayout>
-    `
+    `,
+    styles:[`
+    .icon {
+        font-family: FontAwesome, fontawesome;
+        font-size: 24;
+     }
+     `]
 })
 export class BlankPage {
   public menuList = [

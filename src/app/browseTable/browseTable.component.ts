@@ -103,8 +103,8 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
 
     ngAfterContentInit() {
         this.fourD.call4DRESTMethod('REST_GetListOfTables',{})
-        .subscribe(response => {
-            let resultJSON = response.json();
+        .subscribe(resultJSON => {
+            //let resultJSON = response.json();
             this.numOfTables = resultJSON.tableCount;
             this.listOfTables = resultJSON.tableList;
             this.listOfTables.sort();
@@ -154,8 +154,8 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
             this.currentTable = this.listOfTables[selectRow];
             this.listedTable = this.currentTable;
             this.fourD.call4DRESTMethod('REST_GetFieldsInTable',{TableName:this.listOfTables[selectRow]})
-            .subscribe(response => {
-                let resultJSON = response.json();
+            .subscribe(resultJSON => {
+                //let resultJSON = response.json();
                 this.listOfFields = resultJSON.fieldList;
                 this.selectedRow.classList.add('selectedItem');
 
@@ -292,8 +292,8 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
     showRelatedTable(event) {
         this.listedTable = event.target.textContent;
         this.fourD.call4DRESTMethod('REST_GetFieldsInTable',{TableName:this.listedTable})
-        .subscribe(response => {
-            let resultJSON = response.json();
+        .subscribe(resultJSON => {
+            //let resultJSON = response.json();
             this.listOfFields = resultJSON.fieldList;
             for (var index = 0; index < this.listOfFields.length; index++) {
                 var element = this.listOfFields[index];
@@ -399,19 +399,19 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
 
                 let me = this;
                 this.fourD.call4DRESTMethod('REST_GetRecords', body)
-                    .subscribe(response => {
+                    .subscribe(resultJSON => {
                         me.totalRecordCount = 0;
                         me.models = [];
-                        let jsonData:Object = response.json();
+                        //let jsonData:Object = response.json();
                         /*
                         if (Config.IS_MOBILE_NATIVE()) {
                             // on nativescript
                             jsonData = JSON.parse(jsonData);
                         }
                         */
-                        if (jsonData && jsonData['selected'] && jsonData['records']) {
-                            me.totalRecordCount = jsonData['selected'];
-                            let recList: Array<any> = jsonData['records'];
+                        if (resultJSON && resultJSON['selected'] && resultJSON['records']) {
+                            me.totalRecordCount = resultJSON['selected'];
+                            let recList: Array<any> = resultJSON['records'];
                             recList.forEach(record => {
                                 let newModel: FourDModel = new FourDModel();
                                 newModel.populateModelData(record);

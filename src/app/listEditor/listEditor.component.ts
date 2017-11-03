@@ -39,8 +39,8 @@ export class ListEditorComponent implements ICustomModalComponent, AfterContentI
 
     ngAfterContentInit() {
         this.fourD.call4DRESTMethod('REST_GetListOf4DLists', {})
-            .subscribe(response => {
-                let resultJSON = response.json();
+            .subscribe(resultJSON => {
+                //let resultJSON = response.json();
                 this.listCount = resultJSON.listCount;
                 this.listNames = resultJSON.listNames;
 
