@@ -7,6 +7,9 @@ This web app allows users to directly browse a 4D Database back end and create/e
 
 **Handle with GREAT CARE.** The app already validates that user has **_Admin_** privileges, but **I'd be VERY CAREFUL making this web app available on a production site!** **MOST SPECIALLY ON A PUBLIC ACCESSIBLE WEB SITE.** It is great for development and testing, though. 
 
+
+And do not forget to look at additional, more detailed, documentation on the [wiki pages](https://github.com/fourctv/fourdadmin/wiki).
+
 ## Browse Table Records
 
 ![](https://i.gyazo.com/fef59deaf0d9095e0c56c94fbdd12b60.gif)
