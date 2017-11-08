@@ -1,50 +1,26 @@
-# Angular NativeScript Seed
+# FourD Admin
+A 4D Database Admin Web App.
 
-Build truly web and native applications using NativeScript and Angular. This seed allows your project to share code between the environments; having complete control over dependencies.
+This web app is built upon the [TeamMaestro](https://github.com/TeamMaestro/angular-native-seed) Angular seed.
 
-## Highlights
-- i18n Translations
-- Lazy Loaded Modules
-- Angular CLI // Webpack // Testing
-- Target Phone and Tablet Templates Individually
-- Docker build provided using NGINX to serve web content and load balance reverse proxied backends. (See nginx folder for setup instructions)
+This web app allows users to directly browse a 4D Database back end and create/edit/delete records. It also provides a 4D Choice List Editor.
 
-## How To's
-- [Integrating Angular Material (`@angular/material`)](https://github.com/TeamMaestro/angular-native-seed/wiki/Integrating-Material-for-Web)
+**Handle with GREAT CARE.** The app already validates that user has **_Admin_** privileges, but **I'd be VERY CAREFUL making this web app available on a production site!** **MOST SPECIALLY ON A PUBLIC ACCESSIBLE WEB SITE.** It is great for development and testing, though. 
 
-## Getting Started
 
-Web is setup from the root.
+And do not forget to look at additional, more detailed, documentation on the [wiki pages](https://github.com/fourctv/fourdadmin/wiki).
 
-```
-npm i
-```
+## Browse Table Records
 
-Mobile is setup from the `nativescript` folder.
+![](https://i.gyazo.com/fef59deaf0d9095e0c56c94fbdd12b60.gif)
 
-```
-cd nativescript
-npm i
-```
+## Edit Records
 
-Each platform is run respective to it's folder. View available commands here:
+![](https://i.gyazo.com/7f28589c9b049f39dad3d7c3cd3debaa.gif)
 
-- [Seed Commands](https://github.com/TeamMaestro/angular-native-seed/wiki/Seed-Commands)
+## Edit 4D Choice List
 
-## How To's
-- [Integrating Angular Material (`@angular/material`)](https://github.com/TeamMaestro/angular-native-seed/wiki/Integrating-Material-for-Web)
-- [Integrating Ionic Styles & Components - Demo Project @proyecto26](https://github.com/proyecto26/nativescript-ionic-template)
-- [NativeScript with Angular Web Application Conversion](https://nativescripting.com/course/nativescript-with-angular-web-application-conversion)
+![](https://i.gyazo.com/0cae0653ad68f48fd9644996c7b51228.gif)
 
-## Workspace Options
-- [VSCode WorkSpace Settings](https://github.com/TeamMaestro/angular-native-seed/wiki/Optional:-VSCode-WorkSpace-Settings)
 
-| | |
-|:---: |:---:|
-|![Web Preview](https://i.gyazo.com/1ba4d3be7b7332ce91bd6715dc752d8b.gif)|![Native Preview](https://i.gyazo.com/0a88b56cff9af632f618e5b123502f5f.gif)|
-
-# Contributors 
-
-[<img alt="Don Burgess" src="https://avatars1.githubusercontent.com/u/7612751?v=3&s=117" width="117">](https://github.com/db3dev) | [<img alt="Sean perkins" src="https://avatars1.githubusercontent.com/u/13732623?v=3&s=117" width="117">](https://github.com/sean-perkins) |
-:---: |:---: |
-[Don Burgess](https://github.com/db3dev) |[Sean Perkins](https://github.com/sean-perkins)|
+It relies on Pascal's [4D RESTApi](https://github.com/fourctv/FourDRESTApi) being installed on the 4D Database backend.
