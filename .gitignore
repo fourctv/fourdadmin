@@ -36,11 +36,9 @@ testem.log
 yarn.lock
 package-lock.json
 *.js
+!symlink.js
 !karma.conf.js
 !protractor.conf.js
-!symlink.js
-!nativescript/gulpfile.js
-!nativescript/webpack.config.js
 
 # e2e
 /e2e/*.js
