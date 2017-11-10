@@ -10,8 +10,9 @@ import { FourDModel } from '../js44D/js44D/JSFourDModel';
                 <label class="formHeaderSmall" [attr.for]="inputField.name" style="margin-right:10px;width:180px;vertical-align:top">{{inputField.title}}:&nbsp;&nbsp;</label>
                     <span [ngSwitch]="inputField.type">
                         <span *ngSwitchCase="'string'">
-                            <textarea *ngIf='inputField.length > 0' [maxlength]="inputField.length" [name]="inputField.name" type="text" class="fieldEntry"  cols="90" style="resize:vertical;width:75%" [(ngModel)]="stringField"></textarea>
-                            <textarea *ngIf='!inputField.length'  [name]="inputField.name" type="text" class="fieldEntry"  cols="90" style="resize:vertical;width:75%" [(ngModel)]="stringField" [disabled]="inputField.readonly"></textarea>
+                            <fourd-dropdown *ngIf="inputField.choiceList != ''" listName="{{inputField.choiceList}}" [(selectedValue)]="stringField" (change)="stringField = $event.target.value"></fourd-dropdown>
+                            <textarea *ngIf="inputField.length > 0 && inputField.choiceList == ''" [maxlength]="inputField.length" [name]="inputField.name" type="text" class="fieldEntry"  cols="90" style="resize:vertical;width:75%" [(ngModel)]="stringField"></textarea>
+                            <textarea *ngIf="!inputField.length && inputField.choiceList == ''"  [name]="inputField.name" type="text" class="fieldEntry"  cols="90" style="resize:vertical;width:75%" [(ngModel)]="stringField" [disabled]="inputField.readonly"></textarea>
                         </span>
                         <input *ngSwitchCase="'Date'"  [name]="inputField.name" type="date" class="fieldEntry"  style="width:125px;height:20px;" [(ngModel)]="dateField" [disabled]="inputField.readonly"/>
                         <input *ngSwitchCase="'Time'"  [name]="inputField.name" type="time" class="fieldEntry"  style="width:100px;height:20px;" [(ngModel)]="stringField" [disabled]="inputField.readonly"/>

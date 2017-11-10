@@ -58,24 +58,26 @@
     <GridLayout rows="20, * , 30" width="100%" height="100%">
         <Label class="h3" text="{{currentTable}} ({{totalRecordCount}})" textWrap="true" row="0"></Label>
         <ScrollView orientation="horizontal" row="1" width="100%">
-            <GridLayout width="100%" rows="auto, *" borderWidth="1">
-                <GridLayout width="100%" columns="{{columnWidths}}" row="0" borderBottomWidth="1">
-                    <StackLayout *ngFor="let field of listOfColumns; let idx = index" col="{{idx}}">
-                        <Label class="body" [text]="field.title" paddingLeft="5" borderLeftWidth="1"></Label>
-                    </StackLayout>
+            <StackLayout>
+                <GridLayout width="100%" rows="auto, *" borderWidth="1">
+                    <GridLayout width="100%" columns="{{columnWidths}}" row="0" borderBottomWidth="1">
+                        <StackLayout *ngFor="let field of listOfColumns; let idx = index" col="{{idx}}">
+                            <Label class="body" [text]="field.title" paddingLeft="5" borderLeftWidth="1"></Label>
+                        </StackLayout>
+                    </GridLayout>
+
+                    <ListView class="list-group" row="1" width="100%" [items]="recordList" selectionBehavior="LongPress" (itemTap)="showRecord($event.index)">
+                        <ng-template let-item="item">
+                            <GridLayout width="100%" columns="{{columnWidths}}">
+                                <StackLayout *ngFor="let field of listOfColumns; let idx = index" col="{{idx}}">
+                                    <Label class="body" [text]="item[field.name]" paddingLeft="5" borderLeftWidth="1"></Label>
+                                </StackLayout>
+                            </GridLayout>
+                        </ng-template>
+                    </ListView>
+
                 </GridLayout>
-
-                <ListView class="list-group" row="1" width="100%" [items]="recordList" selectionBehavior="Press" (itemTap)="selectRecord($event.index)">
-                    <ng-template let-item="item">
-                        <GridLayout width="100%" columns="{{columnWidths}}">
-                            <StackLayout *ngFor="let field of listOfColumns; let idx = index" col="{{idx}}">
-                                <Label class="body" [text]="item[field.name]" paddingLeft="5" borderLeftWidth="1"></Label>
-                            </StackLayout>
-                        </GridLayout>
-                    </ng-template>
-                </ListView>
-
-            </GridLayout>
+            </StackLayout>
         </ScrollView>
 
         <StackLayout orientation="horizontal" row="2" horizontalAlignment="center">

@@ -12,7 +12,7 @@ import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 // plugins
 import { NativeScriptUISideDrawerModule } from "nativescript-pro-ui/sidedrawer/angular";
 import { NativeScriptUIListViewModule } from "nativescript-pro-ui/listview/angular";
-
+import { NativeScriptUIDataFormModule } from "nativescript-pro-ui/dataform/angular";
 
 // libs
 import { FourDInterface } from './js44D/js44D/JSFourDInterface';
@@ -30,6 +30,8 @@ import { SideBarMenu } from './sideBarMenu/sideBarMenu';
 import { BlankPage } from './fourDAdmin/blankPage';
 import { LoginComponent  } from './login/login.component';
 import { BrowseTableComponent } from './browseTable/browseTable.component';
+import { BrowseQueryBand } from './browseTable/browseQuery.component';
+import { BrowseFormDialog } from './browseTable/browseFormDialog.component';
 import { ListEditorComponent } from './listEditor/listEditor.component';
 
 // feature modules
@@ -57,6 +59,7 @@ const routes: Routes = [
         NativeScriptRouterModule.forRoot(<any>routes),
         NativeScriptUISideDrawerModule,
         NativeScriptUIListViewModule,
+        NativeScriptUIDataFormModule,
         HttpClientModule
     ],
     exports: [
@@ -65,17 +68,19 @@ const routes: Routes = [
         NativeScriptHttpModule,
         NativeScriptRouterModule,
         NativeScriptUISideDrawerModule,
-        NativeScriptUIListViewModule
+        NativeScriptUIListViewModule,
+        NativeScriptUIDataFormModule
         //MultilingualModule
     ],
     declarations: [
-        FourDAdminComponent, SideBarMenu, BlankPage, LoginComponent, BrowseTableComponent, ListEditorComponent
+        FourDAdminComponent, SideBarMenu, BlankPage, LoginComponent, BrowseTableComponent, BrowseQueryBand, BrowseFormDialog, ListEditorComponent
         ],
     providers: [
         // Allows your {N} application to use lazy-loading
         { provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader },
         FourDInterface, FourDModel, FourDCollection
     ],
+    entryComponents: [BrowseQueryBand, BrowseFormDialog],
     schemas: [
         NO_ERRORS_SCHEMA
     ]

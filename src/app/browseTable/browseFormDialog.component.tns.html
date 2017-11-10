@@ -1,0 +1,39 @@
+<GridLayout margin="25" rows="auto, *, auto">
+    <Label class="h1" text="{{tableName}}" row="0"></Label>
+
+    <ScrollView orientation="vertical"  row="1">
+        <StackLayout>
+                <RadDataForm tkExampleTitle [source]="fieldData">
+                    <TKEntityProperty *ngFor='let field of fieldList; let i=index' 
+                                        tkDataFormProperty 
+                                        name="{{field.name}}" 
+                                        displayName="{{field.title}}"
+                                        index="{{i}}"
+                                        readOnly="true"
+                                        >
+                        <TKPropertyEditor *ngIf="field.type === 'string'" tkEntityPropertyEditor type="MultilineText">
+                            <TKPropertyEditorStyle tkPropertyEditorStyle labelPosition="top" labelFontStyle="Italic" labelTextColor="#00695c" separatorColor="#00695c" strokeColor="Red"></TKPropertyEditorStyle>
+                        </TKPropertyEditor>
+                        <TKPropertyEditor *ngIf="field.type === 'number'" tkEntityPropertyEditor type="Number">
+                            <TKPropertyEditorStyle tkPropertyEditorStyle labelPosition="top" labelFontStyle="Italic" labelTextColor="#00695c" separatorColor="#00695c" strokeColor="Red"></TKPropertyEditorStyle>                                                                
+                        </TKPropertyEditor>
+                        <TKPropertyEditor *ngIf="field.type === 'float'" tkEntityPropertyEditor type="Number">
+                            <TKPropertyEditorStyle tkPropertyEditorStyle labelPosition="top" labelFontStyle="Italic" labelTextColor="#00695c" separatorColor="#00695c" strokeColor="Red"></TKPropertyEditorStyle>                                                                
+                        </TKPropertyEditor>
+                        <TKPropertyEditor *ngIf="field.type === 'boolean'" tkEntityPropertyEditor type="Switch">
+                                <TKPropertyEditorStyle tkPropertyEditorStyle labelPosition="left" labelFontStyle="Italic" labelTextColor="#00695c" separatorColor="#00695c" strokeColor="Red"></TKPropertyEditorStyle>
+                        </TKPropertyEditor>
+                        <TKPropertyEditor *ngIf="field.type === 'Date'" tkEntityPropertyEditor type="DatePicker">
+                                <TKPropertyEditorStyle tkPropertyEditorStyle labelPosition="top" labelFontStyle="Italic" labelTextColor="#00695c" separatorColor="#00695c" strokeColor="Red"></TKPropertyEditorStyle>
+                        </TKPropertyEditor>
+                        <TKPropertyEditor *ngIf="field.type === 'Time'" tkEntityPropertyEditor type="TimePicker">
+                                <TKPropertyEditorStyle tkPropertyEditorStyle labelPosition="top" labelFontStyle="Italic" labelTextColor="#00695c" separatorColor="#00695c" strokeColor="Red"></TKPropertyEditorStyle>
+                        </TKPropertyEditor>
+                    </TKEntityProperty>
+                </RadDataForm>
+        </StackLayout>
+    </ScrollView>
+    <StackLayout orientation="horizontal" marginTop="15" horizontalAlignment="center" row="2">
+        <Button text="Done" (tap)="close()" class="btn btn-primary btn-active btn-rounded-lg"></Button>
+    </StackLayout>
+</GridLayout>

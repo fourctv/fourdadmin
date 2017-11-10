@@ -424,7 +424,7 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
                     },
                     error => {
                         //this.logger.debug('error:' + error.text());
-                        console.log('error:' + error.text());
+                        console.log('error:' + JSON.stringify(error));
 
                     });
 

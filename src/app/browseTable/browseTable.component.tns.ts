@@ -1,6 +1,10 @@
 import { Component, AfterContentInit, ViewContainerRef, Input, ViewChild } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular';
 import { ObservableArray } from "tns-core-modules/data/observable-array"
+import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
+
+import { BrowseQueryBand } from './browseQuery.component';
+import { BrowseFormDialog } from './browseFormDialog.component';
 
 //import { LogService } from '../core/services/logging/log.service';
 import { FourDInterface } from '../js44D/js44D/JSFourDInterface';
@@ -52,10 +56,13 @@ export class BrowseTableComponent implements AfterContentInit {
     @Input() relatedOneTables:Array<string> = [];
     @Input() currentField:FieldDescription = new FieldDescription();
 
-    @Input() queryData:any = {};
+    @Input() queryString:any = {};
+
        
         // the columns for the datagrid
     @Input() public columnWidths:string = '';
+
+    private previousQueryData:any = {};
 
     //
     // Declare Datagrid properties
@@ -72,7 +79,7 @@ export class BrowseTableComponent implements AfterContentInit {
     
     private totalRecordCount:number = 0;
 
-    constructor ( private fourD:FourDInterface, private router:RouterExtensions, private viewref: ViewContainerRef) {
+    constructor ( private fourD:FourDInterface, private router:RouterExtensions, private viewref: ViewContainerRef, private modalService: ModalDialogService) {
 
     }
 
@@ -106,7 +113,7 @@ export class BrowseTableComponent implements AfterContentInit {
                 // set default columns
                 this.listOfColumns = [];
                 this.relatedOneTables = [this.currentTable];
-                this.queryData = {query:["All"]};
+                this.queryString = {query:["All"]};
                 for (var index = 0; index < this.listOfFields.length; index++) {
                     var element = this.listOfFields[index];
                     element.index = index;
@@ -127,6 +134,7 @@ export class BrowseTableComponent implements AfterContentInit {
 
                 this.displayListOfColumns = new ObservableArray(this.listOfColumns);
                 this.showFieldList = 'visible';
+                this.previousQueryData = {};
             });
            
         }
@@ -222,17 +230,31 @@ export class BrowseTableComponent implements AfterContentInit {
         this.showTableList = 'collapse';
         this.showFieldList = 'collapse';
         this.showBrowse = 'visible';
-        if (this.queryData) this.doQuery();
+        console.log('showQuery');
+        this.showQuery();
     }
 
-    doQuery() {
-        console.log('query:'+this.currentTable);
+    showQuery() {
+        let options: ModalDialogOptions = {
+            viewContainerRef: this.viewref,
+            context: {table: this.currentTable, queryFields: this.listOfColumns, previousQuery:this.previousQueryData}
+        };
+    
+        this.modalService.showModal(BrowseQueryBand, options)
+            .then(queryResult => {
+                this.queryString = queryResult.currentQuery;
+                this.previousQueryData = queryResult.queryData;
+                this.runQuery();
+            });
+    }
+
+    runQuery() {
         let body: any = { Username: FourDInterface.currentUser };
         body.TableName = this.currentTable;
         body.StartRec = 0;
         body.NumRecs = -1;
 
-        body.QueryString = JSON.stringify(this.queryData);
+        body.QueryString = JSON.stringify(this.queryString);
         body.Columns = base64.encode(utf8.encode(JSON.stringify(this.listOfColumns)));
 
         body.FilterOptions = '';
@@ -248,7 +270,6 @@ export class BrowseTableComponent implements AfterContentInit {
 
                 if (resultJSON && resultJSON['selected'] && resultJSON['records']) {
                     me.totalRecordCount = resultJSON['selected'];
-                    console.log('got:'+me.totalRecordCount);
                     let recList: Array<any> = resultJSON['records'];
                     recList.forEach(record => {
                         let newModel: FourDModel = new FourDModel();
@@ -260,10 +281,25 @@ export class BrowseTableComponent implements AfterContentInit {
             },
             error => {
                 //this.logger.debug('error:' + error.text());
-                console.log('error:' + error.text());
+                console.log('error:' + JSON.stringify(error));
 
             });
    
+    }
+
+    showRecord(index) {
+        let rec:FourDModel = this.recordList[index];
+        rec.tableName = this.currentTable;
+        rec.fields = <any>this.listOfFields;
+        rec.refresh()
+            .then(() => {
+                let options: ModalDialogOptions = {
+                    viewContainerRef: this.viewref,
+                    context: {record: rec, fieldList: this.listOfFields}
+                };
+            
+                this.modalService.showModal(BrowseFormDialog, options);
+            });     
     }
 
     onNavBtnTap() {

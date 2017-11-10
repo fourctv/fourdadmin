@@ -1,0 +1,44 @@
+<GridLayout margin="25" rows="auto, auto, *, auto">
+    <Label class="h1" text="{{tableName}}" row="0"></Label>
+    <Label text="Fill Out Query Data" row="1"></Label>
+    <ScrollView orientation="vertical"  row="2">
+        <StackLayout>
+                <RadDataForm tkExampleTitle [source]="queryData">
+                    <TKEntityProperty *ngFor='let queryField of queryFields; let i=index' 
+                                        tkDataFormProperty 
+                                        name="{{queryField.name}}" 
+                                        displayName="{{queryField.title}}"
+                                        index="{{i}}"
+                                        [valuesProvider]="queryChoiceList[queryField.name]"
+                                        >
+                        <TKPropertyEditor *ngIf="queryField.type === 'string' && queryField.choiceList == ''" tkEntityPropertyEditor type="Text">
+                            <TKPropertyEditorStyle tkPropertyEditorStyle labelPosition="top" labelFontStyle="Italic" labelTextColor="#00695c" separatorColor="#00695c" strokeColor="Red"></TKPropertyEditorStyle>
+                        </TKPropertyEditor>
+                        <TKPropertyEditor *ngIf="queryField.type === 'string' && queryField.choiceList != ''" tkEntityPropertyEditor type="Picker">
+                            <TKPropertyEditorStyle tkPropertyEditorStyle labelPosition="top" labelFontStyle="Italic" labelTextColor="#00695c" separatorColor="#00695c" strokeColor="Red"></TKPropertyEditorStyle>                                
+                        </TKPropertyEditor>
+                        <TKPropertyEditor *ngIf="queryField.type === 'number'" tkEntityPropertyEditor type="Number">
+                            <TKPropertyEditorStyle tkPropertyEditorStyle labelPosition="top" labelFontStyle="Italic" labelTextColor="#00695c" separatorColor="#00695c" strokeColor="Red"></TKPropertyEditorStyle>                                                                
+                        </TKPropertyEditor>
+                        <TKPropertyEditor *ngIf="queryField.type === 'float'" tkEntityPropertyEditor type="Number">
+                            <TKPropertyEditorStyle tkPropertyEditorStyle labelPosition="top" labelFontStyle="Italic" labelTextColor="#00695c" separatorColor="#00695c" strokeColor="Red"></TKPropertyEditorStyle>                                                                
+                        </TKPropertyEditor>
+                        <TKPropertyEditor *ngIf="queryField.type === 'boolean'" tkEntityPropertyEditor type="Switch">
+                                <TKPropertyEditorStyle tkPropertyEditorStyle labelPosition="left" labelFontStyle="Italic" labelTextColor="#00695c" separatorColor="#00695c" strokeColor="Red"></TKPropertyEditorStyle>
+                        </TKPropertyEditor>
+                        <TKPropertyEditor *ngIf="queryField.type === 'Date'" tkEntityPropertyEditor type="DatePicker">
+                                <TKPropertyEditorStyle tkPropertyEditorStyle labelPosition="top" labelFontStyle="Italic" labelTextColor="#00695c" separatorColor="#00695c" strokeColor="Red"></TKPropertyEditorStyle>
+                        </TKPropertyEditor>
+                        <TKPropertyEditor *ngIf="queryField.type === 'Time'" tkEntityPropertyEditor type="TimePicker">
+                                <TKPropertyEditorStyle tkPropertyEditorStyle labelPosition="top" labelFontStyle="Italic" labelTextColor="#00695c" separatorColor="#00695c" strokeColor="Red"></TKPropertyEditorStyle>
+                        </TKPropertyEditor>
+                    </TKEntityProperty>
+                </RadDataForm>
+        </StackLayout>
+    </ScrollView>
+    <StackLayout orientation="horizontal" marginTop="15" horizontalAlignment="center" row="3">
+        <Button text="Cancel" (tap)="close()" class="btn btn-primary btn-active btn-rounded-lg"></Button>
+        <Button text="Clear" (tap)="clearQuery()" class="btn btn-primary btn-active btn-rounded-lg"></Button>
+        <Button text="Query" (tap)="runQuery()" class="btn btn-primary btn-active btn-rounded-lg"></Button>
+    </StackLayout>
+</GridLayout>
