@@ -43,6 +43,7 @@
             <StackLayout dock="bottom" verticalAlignment="center" horizontalAlignment="center" stretchLastChild="true" height="100%">
                 <Label text="&#xf060;" class="icon" (tap)="removeField()" marginBottom="10"></Label>
                 <Label text="&#xf061;" class="icon" (tap)="addField()"></Label>
+                <Label text="&#xf044;" class="icon" (tap)="editField()" marginTop="20"></Label>
             </StackLayout>
 
         </DockLayout>
@@ -55,8 +56,8 @@
 
 
 <StackLayout class="container-content" padding="10" width="100%" height="100%" [visibility]="showBrowse">
-    <GridLayout rows="20, * , 30" width="100%" height="100%">
-        <Label class="h3" text="{{currentTable}} ({{totalRecordCount}})" textWrap="true" row="0"></Label>
+    <GridLayout rows="auto, * , 30" width="100%" height="100%">
+        <Label class="h2" text="{{currentTable}} ({{totalRecordCount}})" textWrap="true" row="0"></Label>
         <ScrollView orientation="horizontal" row="1" width="100%">
             <StackLayout>
                 <GridLayout width="100%" rows="auto, *" borderWidth="1">

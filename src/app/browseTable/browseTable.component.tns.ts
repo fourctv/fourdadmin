@@ -5,6 +5,7 @@ import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/mod
 
 import { BrowseQueryBand } from './browseQuery.component';
 import { BrowseFormDialog } from './browseFormDialog.component';
+import { BrowseFieldDialog } from './browseFieldDialog.component';
 
 //import { LogService } from '../core/services/logging/log.service';
 import { FourDInterface } from '../js44D/js44D/JSFourDInterface';
@@ -193,6 +194,19 @@ export class BrowseTableComponent implements AfterContentInit {
         }
     }
 
+    editField() {
+        if (this.selectedColumnIndex >= 0) {
+            let options: ModalDialogOptions = {
+                viewContainerRef: this.viewref,
+                context: {field: this.listOfColumns[this.selectedColumnIndex]}
+            };
+        
+            this.modalService.showModal(BrowseFieldDialog, options);
+                
+        }
+    }
+
+
     showRelatedTable(event) {
         this.listedTable = event.target.textContent;
         this.fourD.call4DRESTMethod('REST_GetFieldsInTable',{TableName:this.listedTable})
@@ -209,14 +223,6 @@ export class BrowseTableComponent implements AfterContentInit {
         });
     }
 
-    addRecord() {
-        let newModel: FourDModel = new FourDModel();
-        newModel.tableName = this.currentTable;
-        newModel.fields = <any>this.listOfFields;
-        newModel.clearRecord();
-//        this.modal.openInside(<any>this.editWindow, this.viewref, newModel, this.editWindow['dialogConfig']); // open edit dialog
-
-    }
 
     doBrowse() {
         this.columnWidths = '';
@@ -230,7 +236,6 @@ export class BrowseTableComponent implements AfterContentInit {
         this.showTableList = 'collapse';
         this.showFieldList = 'collapse';
         this.showBrowse = 'visible';
-        console.log('showQuery');
         this.showQuery();
     }
 
@@ -280,7 +285,6 @@ export class BrowseTableComponent implements AfterContentInit {
 
             },
             error => {
-                //this.logger.debug('error:' + error.text());
                 console.log('error:' + JSON.stringify(error));
 
             });
@@ -295,7 +299,7 @@ export class BrowseTableComponent implements AfterContentInit {
             .then(() => {
                 let options: ModalDialogOptions = {
                     viewContainerRef: this.viewref,
-                    context: {record: rec, fieldList: this.listOfFields}
+                    context: {tableName:this.currentTable, record: rec, fieldList: this.listOfFields}
                 };
             
                 this.modalService.showModal(BrowseFormDialog, options);

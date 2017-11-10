@@ -32,6 +32,7 @@ import { LoginComponent  } from './login/login.component';
 import { BrowseTableComponent } from './browseTable/browseTable.component';
 import { BrowseQueryBand } from './browseTable/browseQuery.component';
 import { BrowseFormDialog } from './browseTable/browseFormDialog.component';
+import { BrowseFieldDialog } from './browseTable/browseFieldDialog.component';
 import { ListEditorComponent } from './listEditor/listEditor.component';
 
 // feature modules
@@ -73,14 +74,14 @@ const routes: Routes = [
         //MultilingualModule
     ],
     declarations: [
-        FourDAdminComponent, SideBarMenu, BlankPage, LoginComponent, BrowseTableComponent, BrowseQueryBand, BrowseFormDialog, ListEditorComponent
+        FourDAdminComponent, SideBarMenu, BlankPage, LoginComponent, BrowseTableComponent, BrowseQueryBand, BrowseFormDialog, BrowseFieldDialog, ListEditorComponent
         ],
     providers: [
         // Allows your {N} application to use lazy-loading
         { provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader },
         FourDInterface, FourDModel, FourDCollection
     ],
-    entryComponents: [BrowseQueryBand, BrowseFormDialog],
+    entryComponents: [BrowseQueryBand, BrowseFormDialog, BrowseFieldDialog],
     schemas: [
         NO_ERRORS_SCHEMA
     ]

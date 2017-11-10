@@ -12,11 +12,13 @@ import { FieldDescription } from './browseTable.component';
 
 export class BrowseFormDialog {
     
+    @Input() tableName = "";
     @Input() fieldList:Array<FieldDescription>;
     @Input() fieldData = {};
     private currentRecord: FourDModel;
 
     constructor( private params: ModalDialogParams) {
+        this.tableName = params.context.tableName;
         this.currentRecord = params.context.record;
         this.fieldList = params.context.fieldList;
         //
