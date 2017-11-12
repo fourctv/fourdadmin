@@ -1,6 +1,9 @@
 import { Component, AfterContentInit, ViewContainerRef, Input, ViewChild } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular';
 import { ObservableArray } from "tns-core-modules/data/observable-array"
+import { action, confirm } from "tns-core-modules/ui/dialogs";
+import * as appSettings from "tns-core-modules/application-settings";
+
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 
 import { BrowseQueryBand } from './browseQuery.component';
@@ -59,6 +62,9 @@ export class BrowseTableComponent implements AfterContentInit {
 
     @Input() queryString:any = {};
 
+    @Input() public recordList:Array<FourDModel> = [];
+    @Input() public totalRecordCount:number = 0;
+
        
         // the columns for the datagrid
     @Input() public columnWidths:string = '';
@@ -68,7 +74,6 @@ export class BrowseTableComponent implements AfterContentInit {
     //
     // Declare Datagrid properties
     //
-    public recordList:Array<FourDModel> = [];
     public model = FourDModel; // the record datamodel to use 
 
     public selectedFieldIndex = -1;
@@ -78,7 +83,6 @@ export class BrowseTableComponent implements AfterContentInit {
     private selectedRow:any = null;
     private selectedColumn:any = null;
     
-    private totalRecordCount:number = 0;
 
     constructor ( private fourD:FourDInterface, private router:RouterExtensions, private viewref: ViewContainerRef, private modalService: ModalDialogService) {
 
@@ -206,23 +210,72 @@ export class BrowseTableComponent implements AfterContentInit {
         }
     }
 
+    selectRelatedTable() {
+        let options = {
+            title: "Select Related Table",
+            message: "Related One Tables",
+            cancelButtonText: "Cancel",
+            actions: this.relatedOneTables
+        };
+        
+        action(options).then((result) => {
+            this.showRelatedTable(result);
+        });
+    }
 
-    showRelatedTable(event) {
-        this.listedTable = event.target.textContent;
+    showRelatedTable(relatedTable) {
+        this.listedTable =relatedTable;
         this.fourD.call4DRESTMethod('REST_GetFieldsInTable',{TableName:this.listedTable})
         .subscribe(resultJSON => {
-            //let resultJSON = response.json();
             this.listOfFields = resultJSON.fieldList;
             for (var index = 0; index < this.listOfFields.length; index++) {
                 var element = this.listOfFields[index];
+                element.index = index;
                 element.field = element.longname;
                 element.title = element.name;
+                element.width = '100';
                 element.quickQuery = false;
-                 
             }
         });
     }
 
+    handleConfig() {
+        let options = {
+            title: "Browse Configuration",
+            okButtonText: "Cancel",
+            cancelButtonText: "Save",
+            neutralButtonText: "Load"
+        };
+        
+        confirm(options).then((result: boolean) => {
+            switch (result) {
+                case undefined:
+                    this.loadConfig()
+                    break;
+            
+                case false:
+                    this.saveConfig();
+                    break;
+            }
+        });
+    }
+
+    saveConfig() {
+        if (this.currentTable != '') {
+            appSettings.setString('4Dbrowse'+this.currentTable, JSON.stringify(this.listOfColumns));
+        }
+    }
+
+    loadConfig() {
+        if (this.currentTable != '') {
+            let config = appSettings.getString('4Dbrowse'+this.currentTable);
+            if (config && config != '') {
+                // we have a saved configuration, use it...
+                this.listOfColumns = JSON.parse(config);
+                this.displayListOfColumns = new ObservableArray(this.listOfColumns);
+            }
+        }
+    }
 
     doBrowse() {
         this.columnWidths = '';
