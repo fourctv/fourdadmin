@@ -7,6 +7,7 @@ This web app allows users to directly browse a 4D Database back end and create/e
 
 **Handle with GREAT CARE.** The app already validates that user has **_Admin_** privileges, but **I'd be VERY CAREFUL making this web app available on a production site!** **MOST SPECIALLY ON A PUBLIC ACCESSIBLE WEB SITE.** It is great for development and testing, though. 
 
+There is also an experimental mobile version with basically the same functionality, except for editing records in the database. [see](https://github.com/fourctv/fourdadmin/wiki)
 
 And do not forget to look at additional, more detailed, documentation on the [wiki pages](https://github.com/fourctv/fourdadmin/wiki).
 
@@ -24,3 +25,7 @@ And do not forget to look at additional, more detailed, documentation on the [wi
 
 
 It relies on Pascal's [4D RESTApi](https://github.com/fourctv/FourDRESTApi) being installed on the 4D Database backend.
+
+
+## Mobile Version
+![](https://fourctv.github.io/FourDAdminMobile.mov)
