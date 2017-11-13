@@ -83,6 +83,7 @@
     "livesync": "gulp tns.Livesync",
     "livesync.phone": "gulp tns.Livesync.Phone",
     "publish-ios-bundle": "npm run ns-bundle --ios --publish-app",
+    "build-android-release": "npm run prepTablet && tns prepare android && npm run ns-bundle --android --build-app --release --key-store-path ./moviegenome.jks --key-store-password Fronteira --key-store-alias moviegenome --key-store-alias-password Fronteira",
     "start-android-bundle": "npm run ns-bundle --android --run-app",
     "start-ios-bundle": "npm run ns-bundle --ios --run-app",
     "build-android-bundle": "npm run ns-bundle --android --build-app",

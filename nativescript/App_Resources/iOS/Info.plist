@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.11.11</string>
+	<string>1.11.12</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -50,5 +50,8 @@
 		<!--Include to allow all connections (DANGER)-->
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
-	</dict></dict>
+	</dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string>This application does not need to access your calendar.</string>
+</dict>
 </plist>
