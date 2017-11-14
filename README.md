@@ -1,6 +1,11 @@
 # FourD Admin
 A 4D Database Admin Web App.
 
+[![Build Status](https://travis-ci.org/fourctv/fourdadmin.svg?branch=master)](https://travis-ci.org/fourctv/fourdadmin)
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+[![Dependency Status](https://david-dm.org/fourctv/fourdadmin.svg)](https://david-dm.org/fourctv/fourdadmin)
+[![devDependency Status](https://david-dm.org/fourctv/fourdadmin/dev-status.svg)](https://david-dm.org/fourctv/fourdadmin#info=devDependencies)
+
 This web app is built upon the [TeamMaestro](https://github.com/TeamMaestro/angular-native-seed) Angular seed.
 
 This web app allows users to directly browse a 4D Database back end and create/edit/delete records. It also provides a 4D Choice List Editor.
