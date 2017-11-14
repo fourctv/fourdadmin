@@ -10,6 +10,7 @@ import { BrowseQueryBand } from './browseQuery.component';
 import { BrowseQueryField } from './browseQueryField.component';
 import { BrowseInputField } from './browseInputField.component';
 import { BrowseFormDialog } from './browseFormDialog.component';
+import { BrowseFieldDialog } from './browseFieldDialog.component';
 
 
 // libs
@@ -36,10 +37,10 @@ export const BrowseRoutes: Routes = [
     JS44DModule, ModalModule
   ],
   declarations: [BrowseTableDialog, BrowseTableComponent, BrowseQueryBand, BrowseQueryField,
-                  BrowseFormDialog, BrowseInputField],
+                  BrowseFormDialog, BrowseInputField, BrowseFieldDialog],
   providers: [
     FourDInterface, FourDModel, FourDCollection
   ],
-  entryComponents: [ BrowseFormDialog, BrowseTableComponent ]
+  entryComponents: [ BrowseFormDialog, BrowseTableComponent, BrowseFieldDialog ]
 })
 export class BrowseTableModule { }

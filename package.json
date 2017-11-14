@@ -1,6 +1,6 @@
 {
-  "name": "angular-native-seed",
-  "version": "0.0.0",
+  "name": "fourd-admin",
+  "version": "1.0.0",
   "scripts": {
     "git.merge.preview": "git fetch upstream && git merge --no-commit upstream/master",
     "postinstall": "node symlink.js",
