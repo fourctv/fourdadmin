@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ModalDialogParams } from "nativescript-angular/modal-dialog";
+import { ModalDialogParams } from 'nativescript-angular/modal-dialog';
 
 import { FieldDescription } from './browseTable.component';
 
@@ -25,11 +25,11 @@ import { FieldDescription } from './browseTable.component';
 })
 
 export class BrowseFieldDialog {
-    
-    @Input() field:FieldDescription;
+
+    @Input() field: FieldDescription;
 
 
-    constructor( private params: ModalDialogParams) {
+    constructor(private params: ModalDialogParams) {
         this.field = params.context.field;
     }
 

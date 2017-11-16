@@ -9,17 +9,17 @@ import { ListEditorComponent } from './listEditor.component';
 
 
 // libs
-import { FourDInterface } from '../js44D/js44D/JSFourDInterface';
+import { FourDInterface } from 'js44d';
 
 // feature modules
-import { JS44DModule } from '../js44D/js44D.module';
-import { ModalModule } from '../js44D/modal.module';
+import { JS44DModule } from 'js44d';
+import { ModalModule } from 'js44d';
 
 export const ListEditorRoutes: Routes = [
-    {
-        path: '',
-        component: ListEditorDialog
-    }
+  {
+    path: '',
+    component: ListEditorDialog
+  }
 ];
 
 @NgModule({
@@ -31,9 +31,9 @@ export const ListEditorRoutes: Routes = [
   ],
   declarations: [ListEditorDialog, ListEditorComponent],
   providers: [
-    FourDInterface, 
+    FourDInterface,
   ],
-  entryComponents: [ ListEditorComponent ],
+  entryComponents: [ListEditorComponent],
 
 })
 export class ListEditorModule { }

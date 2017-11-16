@@ -1,27 +1,27 @@
-import { Component, AfterContentInit, ViewContainerRef} from '@angular/core';
+import { Component, AfterContentInit, ViewContainerRef } from '@angular/core';
 import { Routes, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 import { Config } from '../common/index';
 
 import { LoginComponent } from '../login/login.component';
-import { Modal } from '../js44D/angular2-modal/providers/Modal';
-import { FourDInterface } from '../js44D/js44D/JSFourDInterface';
+import { Modal } from 'js44d';
+import { FourDInterface } from 'js44d';
 
 import { BlankPage } from './blankPage';
 
 export const routes: Routes = [
-    {path: 'login', component: BlankPage},
-    {path: 'browseTable', loadChildren: 'app/browseTable/browseTable.module#BrowseTableModule'},
-    {path: 'listEditor', loadChildren: 'app/listEditor/listEditor.module#ListEditorModule'},
-    {path: '**',  component: BlankPage}
+    { path: 'login', component: BlankPage },
+    { path: 'browseTable', loadChildren: 'app/browseTable/browseTable.module#BrowseTableModule' },
+    { path: 'listEditor', loadChildren: 'app/listEditor/listEditor.module#ListEditorModule' },
+    { path: '**', component: BlankPage }
 ];
 
 
 @Component({
     moduleId: module.id,
     selector: 'sd-fourdadmin',
-    providers: [ Modal, FourDInterface ],
+    providers: [Modal, FourDInterface],
     templateUrl: 'fourDAdmin.component.html',
     styleUrls: ['fourDAdmin.component.css']
 })
@@ -37,21 +37,21 @@ export class FourDAdminComponent implements AfterContentInit {
             routePath: '/listEditor',
             title: 'List Editor'
         },
-      /*  {
-            routePath: '/userManager',
-            title: 'User Manager'
-        }*/
+        /*  {
+              routePath: '/userManager',
+              title: 'User Manager'
+          }*/
     ];
 
     public get currentUser(): string {
         return (FourDInterface.authentication) ? FourDInterface.currentUser : '?';
     }
 
-    constructor (public router:Router, private http:HttpClient, private modal: Modal, private viewref: ViewContainerRef) {
+    constructor(public router: Router, private http: HttpClient, private modal: Modal, private viewref: ViewContainerRef) {
         FourDInterface.http = http;
-        if (window.location.hostname === 'localhost' && window.location.port === "4200") {
-            FourDInterface.fourDUrl = 'http://www.vakeano.com';   
-            //FourDInterface.fourDUrl = 'http://localhost:8080';   
+        if (window.location.hostname === 'localhost' && window.location.port === '4200') {
+            FourDInterface.fourDUrl = 'http://www.vakeano.com';
+            // FourDInterface.fourDUrl = 'http://localhost:8080';   
         } else {
             FourDInterface.fourDUrl = window.location.origin;
         }
@@ -59,15 +59,15 @@ export class FourDAdminComponent implements AfterContentInit {
     }
 
     ngAfterContentInit() {
-             // no predefined user, login...
-        if (Config.PLATFORM_TARGET === Config.PLATFORMS.WEB) this.showLoginDialog();
+        // no predefined user, login...
+        if (Config.PLATFORM_TARGET === Config.PLATFORMS.WEB) { this.showLoginDialog(); }
     }
-    
+
     userHasLoggedIn() {
         // load current profile user functions
         if (this.userIsLoggedIn) {
             FourDInterface.runningInsideWorkspace = true; // we are indeed running inside the workspace
-       }
+        }
 
     }
 
@@ -77,20 +77,20 @@ export class FourDAdminComponent implements AfterContentInit {
     doLogin() {
         FourDInterface.authentication = null;
         this.router.navigate(['/login'], { skipLocationChange: true });
-        if (Config.PLATFORM_TARGET === Config.PLATFORMS.WEB) this.showLoginDialog();
+        if (Config.PLATFORM_TARGET === Config.PLATFORMS.WEB) { this.showLoginDialog(); }
     }
 
     showLoginDialog() {
         this.modal.openInside(<any>LoginComponent, this.viewref, null, LoginComponent['dialogConfig'])
             .then((result) => {
-                    this.userHasLoggedIn();
-            });        
+                this.userHasLoggedIn();
+            });
     }
 
 
     openApp(menu) {
-       if (FourDInterface.authentication) {
-           this.router.navigate([menu.routePath], { skipLocationChange: true });
-       }
+        if (FourDInterface.authentication) {
+            this.router.navigate([menu.routePath], { skipLocationChange: true });
+        }
     }
 }

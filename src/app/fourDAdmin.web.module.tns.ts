@@ -10,14 +10,12 @@ import { NativeScriptRouterModule } from 'nativescript-angular';
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 
 // plugins
-import { NativeScriptUISideDrawerModule } from "nativescript-pro-ui/sidedrawer/angular";
-import { NativeScriptUIListViewModule } from "nativescript-pro-ui/listview/angular";
-import { NativeScriptUIDataFormModule } from "nativescript-pro-ui/dataform/angular";
+import { NativeScriptUISideDrawerModule } from 'nativescript-pro-ui/sidedrawer/angular';
+import { NativeScriptUIListViewModule } from 'nativescript-pro-ui/listview/angular';
+import { NativeScriptUIDataFormModule } from 'nativescript-pro-ui/dataform/angular';
 
 // libs
-import { FourDInterface } from './js44D/js44D/JSFourDInterface';
-import { FourDModel } from './js44D/js44D/JSFourDModel';
-import { FourDCollection } from './js44D/js44D/JSFourDCollection';
+import { FourDInterface, FourDModel, FourDCollection } from 'js44d';
 
 // app
 import { Config } from './common/index';
@@ -36,7 +34,7 @@ import { BrowseFieldDialog } from './browseTable/browseFieldDialog.component';
 import { ListEditorComponent } from './listEditor/listEditor.component';
 
 // feature modules
-//import { JS44DModule } from './js44D/js44D.module';
+
 
 Config.PLATFORM_TARGET = Config.PLATFORMS.MOBILE_NATIVE;
 
@@ -71,7 +69,7 @@ const routes: Routes = [
         NativeScriptUISideDrawerModule,
         NativeScriptUIListViewModule,
         NativeScriptUIDataFormModule
-        //MultilingualModule
+        // MultilingualModule
     ],
     declarations: [
         FourDAdminComponent, SideBarMenu, BlankPage, LoginComponent, BrowseTableComponent, BrowseQueryBand, BrowseFormDialog, BrowseFieldDialog, ListEditorComponent

@@ -1,9 +1,9 @@
 import { Component, ContentChild, ElementRef, ViewContainerRef, AfterContentInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ModalConfig } from '../js44D/angular2-modal/models/ModalConfig';
-import { Modal } from '../js44D/angular2-modal/providers/Modal';
-import { ICustomModalComponent } from '../js44D/angular2-modal/models/ICustomModalComponent';
+import { ModalConfig } from 'js44d';
+import { Modal } from 'js44d';
+import { ICustomModalComponent } from 'js44d';
 
 import { BrowseTableComponent } from './browseTable.component'
 
@@ -14,8 +14,8 @@ import { BrowseTableComponent } from './browseTable.component'
 })
 
 export class BrowseTableDialog implements AfterContentInit {
- 
-    constructor(private modal: Modal, public router:Router, private elementRef: ElementRef, private viewRef:ViewContainerRef) {
+
+    constructor(private modal: Modal, public router: Router, private elementRef: ElementRef, private viewRef: ViewContainerRef) {
     }
 
     /**

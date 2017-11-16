@@ -14,19 +14,19 @@ import { BrowseFieldDialog } from './browseFieldDialog.component';
 
 
 // libs
-import { FourDInterface } from '../js44D/js44D/JSFourDInterface';
-import { FourDModel } from '../js44D/js44D/JSFourDModel';
-import { FourDCollection } from '../js44D/js44D/JSFourDCollection';
+import { FourDInterface } from 'js44d';
+import { FourDModel } from 'js44d';
+import { FourDCollection } from 'js44d';
 
 // feature modules
-import { JS44DModule } from '../js44D/js44D.module';
-import { ModalModule } from '../js44D/modal.module';
+import { JS44DModule } from 'js44d';
+import { ModalModule } from 'js44d';
 
 export const BrowseRoutes: Routes = [
-    {
-        path: '',
-        component: BrowseTableDialog
-    }
+  {
+    path: '',
+    component: BrowseTableDialog
+  }
 ];
 
 @NgModule({
@@ -37,10 +37,10 @@ export const BrowseRoutes: Routes = [
     JS44DModule, ModalModule
   ],
   declarations: [BrowseTableDialog, BrowseTableComponent, BrowseQueryBand, BrowseQueryField,
-                  BrowseFormDialog, BrowseInputField, BrowseFieldDialog],
+    BrowseFormDialog, BrowseInputField, BrowseFieldDialog],
   providers: [
     FourDInterface, FourDModel, FourDCollection
   ],
-  entryComponents: [ BrowseFormDialog, BrowseTableComponent, BrowseFieldDialog ]
+  entryComponents: [BrowseFormDialog, BrowseTableComponent, BrowseFieldDialog]
 })
 export class BrowseTableModule { }

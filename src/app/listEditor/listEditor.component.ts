@@ -1,11 +1,10 @@
 import { Component, AfterContentInit } from '@angular/core';
 
-//import { LogService } from '../core/services/logging/log.service';
-import { ModalConfig } from '../js44D/angular2-modal/models/ModalConfig';
-import { ICustomModalComponent } from '../js44D/angular2-modal/models/ICustomModalComponent';
-import { ModalDialogInstance } from '../js44D/angular2-modal/models/ModalDialogInstance';
+import { ModalConfig } from 'js44d';
+import { ICustomModalComponent } from 'js44d';
+import { ModalDialogInstance } from 'js44d';
 
-import { FourDInterface } from '../js44D/js44D/JSFourDInterface';
+import { FourDInterface } from 'js44d';
 
 @Component({
     moduleId: module.id,
@@ -16,11 +15,11 @@ import { FourDInterface } from '../js44D/js44D/JSFourDInterface';
 
 export class ListEditorComponent implements ICustomModalComponent, AfterContentInit {
     public static dialogConfig: ModalConfig = <ModalConfig>{
-            actions:['Maximize', 'Minimize', 'Close'], position: {top:100, left:150},selfCentered:true,
-            title:'4D List Editor',
-            isResizable:true,
-            width:1100, height:510
-        };
+        actions: ['Maximize', 'Minimize', 'Close'], position: { top: 100, left: 150 }, selfCentered: true,
+        title: '4D List Editor',
+        isResizable: true,
+        width: 1100, height: 510
+    };
 
     public dialog: ModalDialogInstance;
 
@@ -40,7 +39,6 @@ export class ListEditorComponent implements ICustomModalComponent, AfterContentI
     ngAfterContentInit() {
         this.fourD.call4DRESTMethod('REST_GetListOf4DLists', {})
             .subscribe(resultJSON => {
-                //let resultJSON = response.json();
                 this.listCount = resultJSON.listCount;
                 this.listNames = resultJSON.listNames;
 
@@ -96,7 +94,7 @@ export class ListEditorComponent implements ICustomModalComponent, AfterContentI
 
     deleteItem() {
         if (this.selectedItemIndex >= 0) {
-            this.listItems.splice(this.selectedItemIndex,1);
+            this.listItems.splice(this.selectedItemIndex, 1);
             this.update4DList();
         }
 
@@ -110,41 +108,41 @@ export class ListEditorComponent implements ICustomModalComponent, AfterContentI
     startDrag(event, type) {
         event.effectAllowed = 'copy';
         event.dataTransfer.setData('row', event.currentTarget.rowIndex);
-   }
+    }
 
     allowDrop(event) {
-        if (event.preventDefault)  event.preventDefault(); // Necessary. Allows us to drop.
-        if (event.stopPropagation)  event.stopPropagation(); 
+        if (event.preventDefault) {event.preventDefault(); } // Necessary. Allows us to drop.
+        if (event.stopPropagation) {event.stopPropagation(); }
 
 
         if (event.type === 'dragenter') {
             event.target.classList.add('droppable');
             event.dataTransfer.dropEffect = 'copy';  // See the section on the DataTransfer object.
         }
-        return false;    
+        return false;
     }
 
     disableDrop(event) {
-        if (event.stopPropagation)  event.stopPropagation(); 
+        if (event.stopPropagation) {event.stopPropagation(); }
         event.target.classList.remove('droppable');
     }
 
     handleDrop(event) {
-        if (event.stopPropagation)  event.stopPropagation(); 
-        
+        if (event.stopPropagation) {event.stopPropagation(); }
+
         this.disableDrop(event);
 
-        let row = event.dataTransfer.getData('row');
-        let moveToIndex = event.currentTarget.rowIndex;
-        let item = this.listItems.splice(row,1);
+        const row = event.dataTransfer.getData('row');
+        const moveToIndex = event.currentTarget.rowIndex;
+        const item = this.listItems.splice(row, 1);
         if (row < moveToIndex) {
             // moving up...
-            this.listItems.splice(event.currentTarget.rowIndex-1,0,item[0]);
+            this.listItems.splice(event.currentTarget.rowIndex - 1, 0, item[0]);
         } else {
             // moving down
-            this.listItems.splice(event.currentTarget.rowIndex,0,item[0]);
+            this.listItems.splice(event.currentTarget.rowIndex, 0, item[0]);
         }
- 
+
         this.update4DList();
     }
 }

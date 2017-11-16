@@ -9,4 +9,4 @@ export class BlankPage {
 
   // Just one way you could handle the {N} `ui/page` Page class
   // in a shared component...
- }
+}

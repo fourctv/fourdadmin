@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 
 import { FieldDescription } from './browseTable.component';
-import { FourDModel } from '../js44D/js44D/JSFourDModel';
+import { FourDModel } from 'js44d';
 
+/* tslint:disable */
 @Component({
     moduleId: module.id,
     selector: 'browse-inputfield',
@@ -26,13 +27,14 @@ import { FourDModel } from '../js44D/js44D/JSFourDModel';
  
             `
 })
+/* tslint:denable */
 
 
 export class BrowseInputField {
     //
     // declare quey band fields
     //
-    @Input() inputField:FieldDescription;
+    @Input() inputField: FieldDescription;
     @Input() currentRecord: FourDModel;
 
     /**
@@ -40,54 +42,54 @@ export class BrowseInputField {
      * which has not get/set methods for each property
      * so I'm using generic typed variables that do the get/set functions I need
      */
-    @Input() get stringField():string {
+    @Input() get stringField(): string {
         return this.currentRecord.get(this.inputField.name);
     }
-    set stringField(v:string) {
+    set stringField(v: string) {
         this.currentRecord.set(this.inputField.name, v);
         this.currentRecord[this.inputField.name] = v;
     }
 
-    @Input() get numberField():number {
+    @Input() get numberField(): number {
         return this.currentRecord.get(this.inputField.name);
     }
-    set numberField(v:number) {
+    set numberField(v: number) {
         this.currentRecord.set(this.inputField.name, v);
         this.currentRecord[this.inputField.name] = v;
     }
 
-    @Input() get booleanField():boolean {
+    @Input() get booleanField(): boolean {
         return this.currentRecord.get(this.inputField.name);
     }
-    set booleanField(v:boolean) {
+    set booleanField(v: boolean) {
         this.currentRecord.set(this.inputField.name, v);
         this.currentRecord[this.inputField.name] = v;
     }
 
-    @Input() get dateField():String {
+    @Input() get dateField(): String {
         // need to deal with how browsers handle 'date' input fields, which is not really supported, so we treat it as a string input for now
-        let value:string;
+        let value: string;
         let dateValue: any = this.currentRecord[this.inputField.name];
-        if (typeof(dateValue) === 'string') {
+        if (typeof (dateValue) === 'string') {
             value = dateValue;
         } else {
-            value = dateValue.getFullYear().toString()+'-';
-            if (dateValue.getMonth()<9) value +='0';
-            value+= (dateValue.getMonth()+1).toString()+'-';
-            if (dateValue.getDate()<10) value +='0';
-            value+= dateValue.getDate().toString();
+            value = dateValue.getFullYear().toString() + '-';
+            if (dateValue.getMonth() < 9) value += '0';
+            value += (dateValue.getMonth() + 1).toString() + '-';
+            if (dateValue.getDate() < 10) value += '0';
+            value += dateValue.getDate().toString();
         }
         return value;
     }
-    set dateField(v:String) {
-        this.currentRecord.set(this.inputField.name, new Date(v.replace(/-/g,'\/')));
+    set dateField(v: String) {
+        this.currentRecord.set(this.inputField.name, new Date(v.replace(/-/g, '\/')));
         this.currentRecord[this.inputField.name] = this.currentRecord.get(this.inputField.name);
     }
 
-    @Input() get objectField():string {
+    @Input() get objectField(): string {
         return JSON.stringify(this.currentRecord.get(this.inputField.name));
     }
-    set objectField(v:string) {
+    set objectField(v: string) {
         this.currentRecord.set(this.inputField.name, JSON.parse(v));
         this.currentRecord[this.inputField.name] = JSON.parse(v);
     }

@@ -25,8 +25,8 @@ export class BrowseQueryField {
     //
     // declare quey band fields
     //
-    @Input() queryField:FieldDescription;
-    @Input() queryData:any = {};
+    @Input() queryField: FieldDescription;
+    @Input() queryData: any = {};
 
 
 }

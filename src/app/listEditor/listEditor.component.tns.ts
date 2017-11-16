@@ -1,8 +1,8 @@
 import { Component, Input, AfterContentInit, ChangeDetectionStrategy } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular';
-import { ObservableArray } from "tns-core-modules/data/observable-array"
+import { ObservableArray } from 'tns-core-modules/data/observable-array';
 
-import { FourDInterface } from '../js44D/js44D/JSFourDInterface';
+import { FourDInterface } from 'js44d';
 
 @Component({
     moduleId: module.id,
@@ -22,18 +22,17 @@ export class ListEditorComponent implements AfterContentInit {
     @Input() public listNames = [];
     public selectedListName = '';
     public selectedListIndex = -1;
-    @Input() public listItems:ObservableArray<string> = new ObservableArray([]);
+    @Input() public listItems: ObservableArray<string> = new ObservableArray([]);
     public selectedItemIndex = -1;
-    @Input() public selectedItemValue: string = '';
+    @Input() public selectedItemValue = '';
 
-    constructor(private fourD: FourDInterface, private router:RouterExtensions) {
+    constructor(private fourD: FourDInterface, private router: RouterExtensions) {
 
     }
 
     ngAfterContentInit() {
         this.fourD.call4DRESTMethod('REST_GetListOf4DLists', {})
             .subscribe(resultJSON => {
-                //let resultJSON = response.json();
                 this.listCount = resultJSON.listCount;
                 this.listNames = resultJSON.listNames;
 
@@ -44,12 +43,11 @@ export class ListEditorComponent implements AfterContentInit {
     selectList(listIndex) {
         this.selectedItemValue = '';
         this.selectedListIndex = listIndex;
-  
+
         this.selectedListName = this.listNames[listIndex];
-        let body: any = { list: this.selectedListName };
+        const body: any = { list: this.selectedListName };
         this.fourD.call4DRESTMethod('REST_Get4DList', body)
             .subscribe((resultJSON) => {
-                //let resultJSON = response.json();
                 this.listItems = new ObservableArray(resultJSON.values);
                 this.selectedItemIndex = -1;
             });
@@ -71,7 +69,7 @@ export class ListEditorComponent implements AfterContentInit {
 
     changeItem() {
         if (this.selectedItemIndex >= 0) {
-            this.listItems.setItem(this.selectedItemIndex,this.selectedItemValue);
+            this.listItems.setItem(this.selectedItemIndex, this.selectedItemValue);
             this.update4DList();
         }
     }
@@ -93,12 +91,13 @@ export class ListEditorComponent implements AfterContentInit {
     }
 
     update4DList() {
-        this.fourD.call4DRESTMethod('REST_Update4DList', { listName: this.selectedListName, listValues: JSON.stringify({ items: this.listItems.filter(() => {return true}) }) })
+        this.fourD.call4DRESTMethod('REST_Update4DList', { listName: this.selectedListName, 
+                listValues: JSON.stringify({ items: this.listItems.filter(() => { return true }) }) })
             .subscribe();
     }
 
     onNavBtnTap() {
-        this.router.navigate(['/back'], { clearHistory: true }); 
+        this.router.navigate(['/back'], { clearHistory: true });
     }
 
 }

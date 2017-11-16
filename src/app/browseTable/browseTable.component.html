@@ -81,7 +81,7 @@
         
         <div class="row" style="border-style: solid; border-width: thin; padding-bottom: 4px;" [style.height]="currentGridHeight" [hidden]="currentTable === ''">   
             <record-list [editWindow]="editWindow" [dialogInstance]="dialog">
-                <query-band [enableSort]="true" [enableQBE]="true" [enableButtonBar]="true" [enableAddRecord]="false" [enableDeleteRecord]="true">
+                <query-band [enableSort]="true" [enableQBE]="true" [enableButtonBar]="true" [enableAddRecord]="false" [enableDeleteRecord]="true" [enableExportGrid]="false">
                     <queryband class="form-group">
                         <browse-queryband  #customQueryBand [queryFields]="listOfColumns" [(queryData)]="queryData">
                         </browse-queryband>

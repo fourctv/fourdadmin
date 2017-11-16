@@ -22,7 +22,7 @@ export class Config {
         return Config.PLATFORM_TARGET === Config.PLATFORMS.MOBILE_NATIVE;
     }
 
-    public static get APP_VERSION():string {
-        return '1.17.11.13a';
+    public static get APP_VERSION(): string {
+        return '1.17.11.17a';
     }
 }
