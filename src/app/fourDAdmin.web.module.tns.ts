@@ -15,7 +15,7 @@ import { NativeScriptUIListViewModule } from 'nativescript-pro-ui/listview/angul
 import { NativeScriptUIDataFormModule } from 'nativescript-pro-ui/dataform/angular';
 
 // libs
-import { FourDInterface, FourDModel, FourDCollection } from 'js44d';
+import { FourDInterface, FourDModel, FourDCollection } from 'js44d/dist/js44D';
 
 // app
 import { Config } from './common/index';

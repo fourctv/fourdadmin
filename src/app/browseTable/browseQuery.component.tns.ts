@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ModalDialogParams } from 'nativescript-angular/modal-dialog';
 
-import { FourDInterface } from 'js44d';
+import { FourDInterface } from 'js44d/dist/js44D';
 import { FieldDescription } from './browseTable.component';
 
 @Component({

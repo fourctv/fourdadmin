@@ -3,7 +3,7 @@ import { RouterExtensions } from 'nativescript-angular';
 
 import { Config } from '../common/index';
 
-import { FourDInterface, MD5 } from 'js44d';
+import { FourDInterface, MD5 } from 'js44d/dist/js44D';
 
 
 @Component({

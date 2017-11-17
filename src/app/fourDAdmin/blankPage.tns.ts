@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular';
 
-import { FourDInterface } from 'js44d';
+import { FourDInterface } from 'js44d/dist/js44D';
 
 @Component({
     moduleId: module.id,

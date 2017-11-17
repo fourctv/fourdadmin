@@ -2,7 +2,7 @@ import { Component, Input, AfterContentInit, ChangeDetectionStrategy } from '@an
 import { RouterExtensions } from 'nativescript-angular';
 import { ObservableArray } from 'tns-core-modules/data/observable-array';
 
-import { FourDInterface } from 'js44d';
+import { FourDInterface } from 'js44d/dist/js44D';
 
 @Component({
     moduleId: module.id,

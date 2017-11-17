@@ -5,7 +5,7 @@ import { RouterExtensions } from 'nativescript-angular';
 import { Config } from '../common/index';
 
 import { LoginComponent } from '../login/login.component';
-import { FourDInterface } from 'js44d';
+import { FourDInterface } from 'js44d/dist/js44D';
 
 import { BlankPage } from './blankPage';
 
