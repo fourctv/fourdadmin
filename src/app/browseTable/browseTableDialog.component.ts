@@ -1,9 +1,9 @@
 import { Component, ContentChild, ElementRef, ViewContainerRef, AfterContentInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ModalConfig } from 'js44d';
-import { Modal } from 'js44d';
-import { ICustomModalComponent } from 'js44d';
+import { ModalConfig } from 'js44d/ui';
+import { Modal } from 'js44d/ui';
+import { ICustomModalComponent } from 'js44d/ui';
 
 import { BrowseTableComponent } from './browseTable.component'
 

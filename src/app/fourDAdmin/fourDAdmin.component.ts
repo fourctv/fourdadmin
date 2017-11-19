@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Config } from '../common/index';
 
 import { LoginComponent } from '../login/login.component';
-import { Modal } from 'js44d';
+import { Modal } from 'js44d/ui';
 import { FourDInterface } from 'js44d';
 
 import { BlankPage } from './blankPage';

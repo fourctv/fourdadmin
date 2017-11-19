@@ -12,8 +12,8 @@ import { ListEditorComponent } from './listEditor.component';
 import { FourDInterface } from 'js44d';
 
 // feature modules
-import { JS44DModule } from 'js44d';
-import { ModalModule } from 'js44d';
+import { JS44DModule } from 'js44d/ui';
+import { ModalModule } from 'js44d/ui';
 
 export const ListEditorRoutes: Routes = [
   {

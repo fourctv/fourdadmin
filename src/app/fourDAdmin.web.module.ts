@@ -21,7 +21,7 @@ import { BlankPage } from './fourDAdmin/blankPage';
 import { LoginComponent } from './login/login.component';
 
 // feature modules
-import { JS44DModule, ModalModule } from 'js44d';
+import { JS44DModule, ModalModule } from 'js44d/ui';
 
 const routerModule = RouterModule.forRoot(routes);
 

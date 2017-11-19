@@ -10,7 +10,7 @@ import { BrowseQueryBand } from './browseQuery.component';
 import { BrowseFormDialog } from './browseFormDialog.component';
 import { BrowseFieldDialog } from './browseFieldDialog.component';
 
-import { FourDInterface, FourDModel, FourDCollection } from 'js44d/dist/js44D';
+import { FourDInterface, FourDModel, FourDCollection } from 'js44d';
 
 import * as base64 from 'base-64';
 import * as utf8 from 'utf8/utf8';
