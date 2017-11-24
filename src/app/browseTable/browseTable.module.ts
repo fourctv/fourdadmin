@@ -17,8 +17,8 @@ import { BrowseFieldDialog } from './browseFieldDialog.component';
 import { FourDInterface, FourDModel, FourDCollection } from 'js44d';
 
 // feature modules
-import { JS44DModule } from 'js44d/ui';
-import { ModalModule } from 'js44d/ui';
+import { JS44DModule } from 'js44d';
+import { ModalModule } from 'js44d';
 
 export const BrowseRoutes: Routes = [
   {

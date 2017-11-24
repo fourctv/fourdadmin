@@ -23,15 +23,13 @@
     "@angular/router": "~4.4.4",
     "@ngx-translate/core": "^8.0.0",
     "@ngx-translate/http-loader": "2.0.0",
-    "base-64": "^0.1.0",
-    "js44d": "^1.1.0",
+    "js44d": "^1.1.6",
     "nativescript-angular": "4.4.1",
     "nativescript-pro-ui": "^3.2.0",
     "nativescript-theme-core": "1.0.4",
     "reflect-metadata": "~0.1.8",
     "rxjs": "^5.4.3",
     "tns-core-modules": "^3.3.0",
-    "utf8": "^2.1.2",
     "zone.js": "^0.8.18"
   },
   "devDependencies": {

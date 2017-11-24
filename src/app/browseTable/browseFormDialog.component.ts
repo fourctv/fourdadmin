@@ -1,7 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 
 import { FourDModel } from 'js44d';
-import { RecordEditWindow, ModalConfig } from 'js44d/ui';
+import { RecordEditWindow, ModalConfig } from 'js44d';
 
 @Component({
     moduleId: module.id,

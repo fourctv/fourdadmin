@@ -1,12 +1,12 @@
 import { Component, AfterContentInit, ViewContainerRef, Input, ViewChild } from '@angular/core';
 
 import { FourDInterface, FourDModel, FourDCollection } from 'js44d';
-import { DataGrid } from 'js44d/ui';
-import { RecordList } from 'js44d/ui';
-import { Modal } from 'js44d/ui';
-import { ModalConfig } from 'js44d/ui';
-import { ICustomModalComponent } from 'js44d/ui';
-import { ModalDialogInstance } from 'js44d/ui';
+import { DataGrid } from 'js44d';
+import { RecordList } from 'js44d';
+import { Modal } from 'js44d';
+import { ModalConfig } from 'js44d';
+import { ICustomModalComponent } from 'js44d';
+import { ModalDialogInstance } from 'js44d';
 
 import { BrowseFormDialog } from './browseFormDialog.component';
 
