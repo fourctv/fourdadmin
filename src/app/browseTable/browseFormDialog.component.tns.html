@@ -29,6 +29,9 @@
                         <TKPropertyEditor *ngIf="field.type === 'Time'" tkEntityPropertyEditor type="TimePicker">
                                 <TKPropertyEditorStyle tkPropertyEditorStyle labelPosition="top" labelFontStyle="Italic" labelTextColor="#00695c" separatorColor="#00695c" strokeColor="Red"></TKPropertyEditorStyle>
                         </TKPropertyEditor>
+                        <TKPropertyEditor *ngIf="field.type === 'json'" tkEntityPropertyEditor type="MultilineText">
+                            <TKPropertyEditorStyle tkPropertyEditorStyle labelPosition="top" labelFontStyle="Italic" labelTextColor="#00695c" separatorColor="#00695c" strokeColor="Blue"></TKPropertyEditorStyle>
+                        </TKPropertyEditor>
                     </TKEntityProperty>
                 </RadDataForm>
         </StackLayout>

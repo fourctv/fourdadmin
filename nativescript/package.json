@@ -23,7 +23,7 @@
     "@angular/router": "~4.4.4",
     "@ngx-translate/core": "^8.0.0",
     "@ngx-translate/http-loader": "2.0.0",
-    "js44d": "^1.1.6",
+    "js44d": "^1.1.7",
     "nativescript-angular": "4.4.1",
     "nativescript-pro-ui": "^3.2.0",
     "nativescript-theme-core": "1.0.4",

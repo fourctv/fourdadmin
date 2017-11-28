@@ -1,4 +1,5 @@
 import { Component, AfterContentInit, ViewContainerRef, Input, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { FourDInterface, FourDModel, FourDCollection } from 'js44d';
 import { DataGrid } from 'js44d';
@@ -35,7 +36,7 @@ export class FieldDescription {
     selector: 'sd-browse-table',
     templateUrl: 'browseTable.component.html',
     styleUrls: ['browseTable.component.css'],
-    providers: [Modal]
+    providers: [HttpClient, FourDInterface, Modal]
 })
 
 
@@ -93,7 +94,7 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
     private totalRecordCount = 0;
     private models = [];
 
-    constructor(private modal: Modal, private fourD: FourDInterface, /*private logger: LogService,*/ private viewref: ViewContainerRef) {
+    constructor(private http:HttpClient, private fourD: FourDInterface, private modal: Modal, private viewref: ViewContainerRef) {
 
     }
 

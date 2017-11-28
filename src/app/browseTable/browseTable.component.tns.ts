@@ -340,12 +340,12 @@ export class BrowseTableComponent implements AfterContentInit {
     showRecord(index) {
         const rec: FourDModel = this.recordList[index];
         rec.tableName = this.currentTable;
-        rec.fields = <any>this.listOfFields;
+        rec.fields = this.model.prototype.fields;
         rec.refresh()
             .then(() => {
                 const options: ModalDialogOptions = {
                     viewContainerRef: this.viewref,
-                    context: { tableName: this.currentTable, record: rec, fieldList: this.listOfFields }
+                    context: { tableName: this.currentTable, record: rec, fieldList: this.model.prototype.fields }
                 };
 
                 this.modalService.showModal(BrowseFormDialog, options);
