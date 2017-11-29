@@ -9,9 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
-// libs
-import { FourDInterface, FourDModel, FourDCollection } from 'js44d';
-
 // app
 import { FourDAdminComponent } from './fourDAdmin/fourDAdmin.component';
 import { routes } from './fourDAdmin/fourDAdmin.component';
@@ -21,7 +18,7 @@ import { BlankPage } from './fourDAdmin/blankPage';
 import { LoginComponent } from './login/login.component';
 
 // feature modules
-import { JS44DModule, ModalModule } from 'js44d';
+import { fourDModule, JS44DModule, ModalModule } from 'js44d';
 
 const routerModule = RouterModule.forRoot(routes);
 
@@ -35,14 +32,11 @@ const routerModule = RouterModule.forRoot(routes);
     HttpClientModule,
     BsDropdownModule.forRoot(),
     routerModule,
-    JS44DModule, ModalModule
+    fourDModule, JS44DModule, ModalModule
   ],
   declarations: [FourDAdminComponent, BlankPage, LoginComponent
   ],
-  providers: [
-    FourDInterface, FourDModel, FourDCollection
-  ],
-  exports: [JS44DModule, ModalModule],
+  exports: [fourDModule, JS44DModule, ModalModule],
   entryComponents: [LoginComponent],
   bootstrap: [FourDAdminComponent]
 })

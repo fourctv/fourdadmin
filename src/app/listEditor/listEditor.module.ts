@@ -8,10 +8,8 @@ import { ListEditorDialog } from './listEditorDialog.component';
 import { ListEditorComponent } from './listEditor.component';
 
 
-// libs
-import { FourDInterface } from 'js44d';
-
 // feature modules
+import { fourDModule } from 'js44d';
 import { JS44DModule } from 'js44d';
 import { ModalModule } from 'js44d';
 
@@ -27,12 +25,9 @@ export const ListEditorRoutes: Routes = [
     CommonModule,
     FormsModule,
     RouterModule.forChild(ListEditorRoutes),
-    JS44DModule, ModalModule
+    fourDModule, JS44DModule, ModalModule
   ],
   declarations: [ListEditorDialog, ListEditorComponent],
-  providers: [
-    FourDInterface,
-  ],
   entryComponents: [ListEditorComponent],
 
 })

@@ -1,6 +1,5 @@
 import { Component, AfterContentInit, ViewContainerRef } from '@angular/core';
 import { Routes, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 
 import { Config } from '../common/index';
 
@@ -47,8 +46,7 @@ export class FourDAdminComponent implements AfterContentInit {
         return (FourDInterface.authentication) ? FourDInterface.currentUser : '?';
     }
 
-    constructor(public router: Router, private http: HttpClient, private modal: Modal, private viewref: ViewContainerRef) {
-        FourDInterface.http = http;
+    constructor(public router: Router, private modal: Modal, private viewref: ViewContainerRef) {
         if (window.location.hostname === 'localhost' && window.location.port === '4200') {
             FourDInterface.fourDUrl = 'http://www.vakeano.com';
             // FourDInterface.fourDUrl = 'http://localhost:8080';   
