@@ -18,7 +18,7 @@ import { BlankPage } from './fourDAdmin/blankPage';
 import { LoginComponent } from './login/login.component';
 
 // feature modules
-import { fourDModule, JS44DModule, ModalModule } from 'js44d';
+import { FourDModule, JS44DModule, ModalModule } from 'js44d';
 
 const routerModule = RouterModule.forRoot(routes);
 
@@ -32,11 +32,11 @@ const routerModule = RouterModule.forRoot(routes);
     HttpClientModule,
     BsDropdownModule.forRoot(),
     routerModule,
-    fourDModule, JS44DModule, ModalModule
+    FourDModule, JS44DModule, ModalModule
   ],
   declarations: [FourDAdminComponent, BlankPage, LoginComponent
   ],
-  exports: [fourDModule, JS44DModule, ModalModule],
+  exports: [FourDModule, JS44DModule, ModalModule],
   entryComponents: [LoginComponent],
   bootstrap: [FourDAdminComponent]
 })
