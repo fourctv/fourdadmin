@@ -25,6 +25,7 @@ export class FieldDescription {
     readonly: boolean;
     choiceList: string;
     relatesTo: string;
+    length?: number;
     field?: string;
     title?: string;
     quickQuery?: boolean;
