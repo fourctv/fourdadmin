@@ -39,6 +39,7 @@ package-lock.json
 !symlink.js
 !karma.conf.js
 !protractor.conf.js
+!gulpfile.js
 
 # e2e
 /e2e/*.js
