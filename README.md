@@ -8,9 +8,11 @@ A 4D Database Admin Web App.
 
 This web app is built upon the [TeamMaestro](https://github.com/TeamMaestro/angular-native-seed) Angular seed.
 
-This web app allows users to directly browse a 4D Database back end and create/edit/delete records. It also provides a 4D Choice List Editor.
+This web app allows users to directly browse a 4D Database backend and create/edit/delete records. It also provides a 4D Choice List Editor.
 
 **Handle with GREAT CARE.** The app already validates that user has **_Admin_** privileges, but **I'd be VERY CAREFUL making this web app available on a production site!** **MOST SPECIALLY ON A PUBLIC ACCESSIBLE WEB SITE.** It is great for development and testing, though. 
+
+The `distribution` folder includes a built version of the *FourDAdmin* web app. You can download the .zip file in there and copy its contents to a subfolder in your application's `Webfolder`. If you have the **RESTApi** Component installed in your 4D structure, you will be able to browse and edit your database records and choice lists.
 
 There is also an experimental mobile version with basically the same functionality, except for editing records in the database. [see](https://github.com/fourctv/fourdadmin/wiki)
 
