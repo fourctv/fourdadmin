@@ -34,5 +34,3 @@ And do not forget to look at additional, more detailed, documentation on the [wi
 It relies on Pascal's [4D RESTApi](https://github.com/fourctv/FourDRESTApi) being installed on the 4D Database backend.
 
 
-## Mobile Version
-![](https://fourctv.github.io/FourDAdminMobile.mov)
