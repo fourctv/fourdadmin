@@ -34,3 +34,10 @@ And do not forget to look at additional, more detailed, documentation on the [wi
 It relies on Pascal's [4D RESTApi](https://github.com/fourctv/FourDRESTApi) being installed on the 4D Database backend.
 
 
+# Contributors 
+
+[<img alt="Julio Carneiro" src="https://avatars1.githubusercontent.com/u/15777910?v=3&s=117" width="117">](https://github.com/fourctv) |
+:---: |
+[Julio Carneiro](https://github.com/fourctv) |
+
+
