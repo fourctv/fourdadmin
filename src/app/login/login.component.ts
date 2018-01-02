@@ -1,4 +1,4 @@
-import { Component, Input, ReflectiveInjector } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Config } from '../common/index';
 
 import { ModalDialogInstance, ICustomModalComponent, ModalConfig } from 'js44d';

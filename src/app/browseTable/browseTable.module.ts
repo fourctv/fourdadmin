@@ -15,7 +15,7 @@ import { BrowseFieldDialog } from './browseFieldDialog.component';
 
 
 // feature modules
-import { FourDModule } from 'js44d';
+import { FourDModule, FourDInterface } from 'js44d';
 import { JS44DModule } from 'js44d';
 import { ModalModule } from 'js44d';
 
@@ -34,7 +34,7 @@ export const BrowseRoutes: Routes = [
     RouterModule.forChild(BrowseRoutes),
     FourDModule, JS44DModule, ModalModule
   ],
-  providers: [HttpClient],
+  providers: [HttpClient, FourDInterface],
   declarations: [BrowseTableDialog, BrowseTableComponent, BrowseQueryBand, BrowseQueryField,
     BrowseFormDialog, BrowseInputField, BrowseFieldDialog],
   entryComponents: [BrowseFormDialog, BrowseTableComponent, BrowseFieldDialog]
