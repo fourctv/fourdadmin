@@ -18,6 +18,7 @@ import { FourDModel } from 'js44d';
                         <input *ngSwitchCase="'Date'"  [name]="inputField.name" type="date" class="fieldEntry"  style="width:125px;height:20px;" [(ngModel)]="dateField" [disabled]="inputField.readonly"/>
                         <input *ngSwitchCase="'Time'"  [name]="inputField.name" type="time" class="fieldEntry"  style="width:100px;height:20px;" [(ngModel)]="stringField" [disabled]="inputField.readonly"/>
                         <input *ngSwitchCase="'number'"  [name]="inputField.name" type="number" class="fieldEntry"  style="width:80px;height:20px;text-align:right;" [(ngModel)]="numberField" [disabled]="inputField.readonly"/>
+                        <input *ngSwitchCase="'Number'"  [name]="inputField.name" type="number" class="fieldEntry"  style="width:80px;height:20px;" [(ngModel)]="numberField" [disabled]="inputField.readonly"/>
                         <input *ngSwitchCase="'float'"  [name]="inputField.name" type="number" class="fieldEntry"  style="width:80px;height:20px;" [(ngModel)]="numberField" [disabled]="inputField.readonly"/>
                         <input *ngSwitchCase="'boolean'"  [name]="inputField.name" type="checkbox" class="fieldEntry" style="height:30px;width:50px;margin-top:-6px;" [(ngModel)]="booleanField" [disabled]="inputField.readonly"/>
                         <textarea *ngSwitchCase="'json'"  [name]="inputField.name" type="text" class="fieldEntry"  cols="90" style="resize:vertical;width:75%" [(ngModel)]="objectField" disabled></textarea>
