@@ -399,6 +399,7 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
                     .subscribe(resultJSON => {
                         this.totalRecordCount = 0;
                         this.models = [];
+                        let data = [];
                         if (resultJSON && resultJSON['selected'] && resultJSON['records']) {
                             this.totalRecordCount = resultJSON['selected'];
                             const recList: Array<any> = resultJSON['records'];
@@ -406,11 +407,12 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
                                 const theModel: FourDModel = new FourDModel();
                                 theModel.populateModelData(record);
                                 this.models.push(theModel);
+                                data.push(record);
                             });
                         }
 
                         this.theGrid.getDataProvider().models = this.models;
-                        options.success(this.models);
+                        options.success(data);
                     },
                     error => {
                         console.log('error:' + JSON.stringify(error));
