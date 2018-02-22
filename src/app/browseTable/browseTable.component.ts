@@ -1,7 +1,7 @@
 import { Component, AfterContentInit, ViewContainerRef, Input, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { FourDInterface, FourDModel, FourDCollection } from 'js44d';
+import { FourDInterface, FourDModel, FourDCollection , Base64, Utf8} from 'js44d';
 import { DataGrid } from 'js44d';
 import { RecordList } from 'js44d';
 import { Modal } from 'js44d';
@@ -11,8 +11,6 @@ import { ModalDialogInstance } from 'js44d';
 
 import { BrowseFormDialog } from './browseFormDialog.component';
 
-import * as base64 from 'base-64';
-import * as utf8 from 'utf8/utf8';
 
 export class FieldDescription {
     name: string;
@@ -389,7 +387,7 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
                 body.NumRecs = numrecs;
 
                 body.QueryString = JSON.stringify(query);
-                body.Columns = base64.encode(utf8.encode(JSON.stringify(this.listOfColumns)));
+                body.Columns = Base64.encode(Utf8.utf8encode(JSON.stringify(this.listOfColumns)));
 
                 if (filter.length > 0) { body.FilterOptions = JSON.stringify({ query: filter }); }
                 if (orderby) { body.OrderBy = orderby; }

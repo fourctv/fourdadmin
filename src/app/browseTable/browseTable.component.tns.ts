@@ -10,10 +10,7 @@ import { BrowseQueryBand } from './browseQuery.component';
 import { BrowseFormDialog } from './browseFormDialog.component';
 import { BrowseFieldDialog } from './browseFieldDialog.component';
 
-import { FourDInterface, FourDModel, FourDCollection } from 'js44d';
-
-import * as base64 from 'base-64';
-import * as utf8 from 'utf8/utf8';
+import { FourDInterface, FourDModel, FourDCollection, Base64, Utf8 } from 'js44d';
 
 export class FieldDescription {
     name: string;
@@ -308,7 +305,7 @@ export class BrowseTableComponent implements AfterContentInit {
         body.NumRecs = -1;
 
         body.QueryString = JSON.stringify(this.queryString);
-        body.Columns = base64.encode(utf8.encode(JSON.stringify(this.listOfColumns)));
+        body.Columns = Base64.encode(Utf8.utf8encode(JSON.stringify(this.listOfColumns)));
 
         body.FilterOptions = '';
         body.OrderBy = '';
