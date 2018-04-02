@@ -403,7 +403,7 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
                             const recList: Array<any> = resultJSON['records'];
                             recList.forEach(record => {
                                 const theModel: FourDModel = new FourDModel();
-                                theModel.populateModelData(record);
+                                theModel.recordNumber = record['_recnum']
                                 this.models.push(theModel);
                                 data.push(record);
                             });

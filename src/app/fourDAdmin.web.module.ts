@@ -7,8 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-
 // app
 import { FourDAdminComponent } from './fourDAdmin/fourDAdmin.component';
 import { routes } from './fourDAdmin/fourDAdmin.component';
@@ -30,7 +28,6 @@ const routerModule = RouterModule.forRoot(routes);
     FormsModule,
     CommonModule,
     HttpClientModule,
-    BsDropdownModule.forRoot(),
     routerModule,
     FourDModule, JS44DModule, ModalModule
   ],

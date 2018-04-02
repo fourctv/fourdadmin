@@ -321,7 +321,25 @@ export class BrowseTableComponent implements AfterContentInit {
                     const recList: Array<any> = resultJSON['records'];
                     recList.forEach(record => {
                         const newModel: FourDModel = new FourDModel();
-                        newModel.populateModelData(record);
+                        newModel.recordNumber = record['_recnum'];
+                        for (const field in record) {
+                            if (field !== '_recnum') {
+                                for (const col of this.listOfColumns) {
+                                    if (col.name === field) { 
+                                        switch (col.type ) {
+                                            case 'json':
+                                                newModel[field] = JSON.parse(record[field]); 
+                                                break;
+                                        
+                                            default:
+                                                newModel[field] = record[field];
+                                                break;
+                                        }                                        
+                                    }
+                                };                              
+                            }
+                        }
+
                         this.recordList.push(newModel);
                     });
                 }

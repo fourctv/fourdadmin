@@ -47,8 +47,10 @@
     ],
     "exclude": [
         "node_modules",
+        "platforms",
         "**/*.aot.ts",
         "hooks",
-        "src"
+        "src",
+        "gulpfile.js"
     ]
 }

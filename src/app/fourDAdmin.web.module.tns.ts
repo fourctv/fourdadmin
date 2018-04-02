@@ -10,9 +10,9 @@ import { NativeScriptRouterModule } from 'nativescript-angular';
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 
 // plugins
-import { NativeScriptUISideDrawerModule } from 'nativescript-pro-ui/sidedrawer/angular';
-import { NativeScriptUIListViewModule } from 'nativescript-pro-ui/listview/angular';
-import { NativeScriptUIDataFormModule } from 'nativescript-pro-ui/dataform/angular';
+import { NativeScriptUISideDrawerModule } from 'nativescript-ui-sidedrawer/angular';
+import { NativeScriptUIListViewModule } from 'nativescript-ui-listview/angular';
+import { NativeScriptUIDataFormModule } from 'nativescript-ui-dataform/angular';
 
 // libs
 import { FourDInterface, FourDModel, FourDCollection } from 'js44d';
