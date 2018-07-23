@@ -38,6 +38,7 @@ export class BrowseQueryBand {
                         break;
 
                     case 'number':
+                    case 'Number':
                     case 'float':
                     case 'boolean':
                     case 'Time':

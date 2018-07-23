@@ -12,6 +12,7 @@ import { FieldDescription } from './browseTable.component';
                         <input *ngSwitchCase="'Date'"  [name]="queryField.name" type="date" class="fieldEntry"  style="width:125px;height:20px;" [(ngModel)]="queryData[queryField.name]"/>
                         <input *ngSwitchCase="'Time'"  [name]="queryField.name" type="time" class="fieldEntry"  style="width:100px;height:20px;" [(ngModel)]="queryData[queryField.name]"/>
                         <input *ngSwitchCase="'number'"  [name]="queryField.name" type="number" class="fieldEntry"  style="width:80px;height:20px;" [(ngModel)]="queryData[queryField.name]"/>
+                        <input *ngSwitchCase="'Number'"  [name]="queryField.name" type="number" class="fieldEntry"  style="width:80px;height:20px;" [(ngModel)]="queryData[queryField.name]"/>
                         <input *ngSwitchCase="'float'"  [name]="queryField.name" type="number" class="fieldEntry"  style="width:80px;height:20px;" [(ngModel)]="queryData[queryField.name]"/>
                         <input *ngSwitchCase="'boolean'"  [name]="queryField.name" type="checkbox" class="fieldEntry"  style="width:80px;height:20px;" [(ngModel)]="queryData[queryField.name]"/>
                      </div>    
