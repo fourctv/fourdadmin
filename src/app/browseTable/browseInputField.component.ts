@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { FieldDescription } from './browseTable.component';
-import { FourDModel } from 'js44d';
+import { FourDModel, FourDInterface } from 'js44d';
 
 /* tslint:disable */
 @Component({
@@ -16,7 +16,7 @@ import { FourDModel } from 'js44d';
                             <textarea *ngIf="!inputField.length && inputField.choiceList == ''"  [name]="inputField.name" type="text" class="fieldEntry"  cols="90" style="resize:vertical;width:75%" [(ngModel)]="stringField" [disabled]="inputField.readonly"></textarea>
                         </span>
                         <input *ngSwitchCase="'Date'"  [name]="inputField.name" type="date" class="fieldEntry"  style="width:125px;height:20px;" [(ngModel)]="dateField" [disabled]="inputField.readonly"/>
-                        <input *ngSwitchCase="'Time'"  [name]="inputField.name" type="time" class="fieldEntry"  style="width:100px;height:20px;" [(ngModel)]="stringField" [disabled]="inputField.readonly"/>
+                        <input *ngSwitchCase="'Time'"  [name]="inputField.name" type="time" class="fieldEntry"  style="width:125px;height:20px;" [(ngModel)]="timeField" [disabled]="inputField.readonly"/>
                         <input *ngSwitchCase="'number'"  [name]="inputField.name" type="number" class="fieldEntry"  style="width:80px;height:20px;text-align:right;" [(ngModel)]="numberField" [disabled]="inputField.readonly"/>
                         <input *ngSwitchCase="'Number'"  [name]="inputField.name" type="number" class="fieldEntry"  style="width:80px;height:20px;" [(ngModel)]="numberField" [disabled]="inputField.readonly"/>
                         <input *ngSwitchCase="'float'"  [name]="inputField.name" type="number" class="fieldEntry"  style="width:80px;height:20px;" [(ngModel)]="numberField" [disabled]="inputField.readonly"/>
@@ -33,6 +33,9 @@ import { FourDModel } from 'js44d';
 
 
 export class BrowseInputField {
+
+    constructor(private fourD:FourDInterface) {}
+
     //
     // declare quey band fields
     //
@@ -73,8 +76,8 @@ export class BrowseInputField {
         let value: string;
         let dateValue: any = this.currentRecord[this.inputField.name];
         if (typeof (dateValue) === 'string') {
-            value = dateValue;
-        } else {
+            value = dateValue.replace(/\//g, '-');
+        } else if (dateValue) {
             value = dateValue.getFullYear().toString() + '-';
             if (dateValue.getMonth() < 9) value += '0';
             value += (dateValue.getMonth() + 1).toString() + '-';
@@ -85,6 +88,22 @@ export class BrowseInputField {
     }
     set dateField(v: String) {
         this.currentRecord.set(this.inputField.name, new Date(v.replace(/-/g, '\/')));
+        this.currentRecord[this.inputField.name] = this.currentRecord.get(this.inputField.name);
+    }
+
+    @Input() get timeField(): String {
+        // need to deal with how browsers handle 'date' input fields, which is not really supported, so we treat it as a string input for now
+        let value: string;
+        let timeValue: any = this.currentRecord[this.inputField.name];
+        if (typeof (timeValue) === 'string') {
+            value = timeValue;
+        } else if (timeValue) {
+            value = this.fourD.timeTo4DFormat(timeValue);
+        }
+        return value;
+    }
+    set timeField(v: String) {
+        this.currentRecord.set(this.inputField.name, v);
         this.currentRecord[this.inputField.name] = this.currentRecord.get(this.inputField.name);
     }
 
