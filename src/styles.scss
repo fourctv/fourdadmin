@@ -13,7 +13,7 @@ body {
 @import './assets/kendo/kendo.common.css';
 @import './assets/kendo/kendo.default.css';
 
-@import './assets/main';
-
 @import '~bootstrap/dist/css/bootstrap.min.css';
-@import '~bootstrap/dist/css/bootstrap-theme.min.css';
+//@import '~bootstrap/dist/css/bootstrap-theme.min.css';
+
+@import './assets/main';
