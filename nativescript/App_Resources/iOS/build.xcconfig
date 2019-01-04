@@ -1,11 +1,11 @@
 // You can add custom settings here
 // for example you can uncomment the following line to force distribution code signing
-// CODE_SIGN_IDENTITY = iPhone Distribution 
+// CODE_SIGN_IDENTITY = iPhone Distribution
 // To build for device with XCode 8 you need to specify your development team. More info: https://developer.apple.com/library/prerelease/content/releasenotes/DeveloperTools/RN-Xcode/Introduction.html
 DEVELOPMENT_TEAM = 6CG2EU7FY3;
 CODE_SIGN_IDENTITY = iPhone Distribution: Julio Carneiro (6CG2EU7FY3);
 PROVISIONING_PROFILE_SPECIFIER = FourDAdmin;
-PROVISIONING_PROFILE = 0a8d7e2c-b542-4d1d-9d84-cf982394cc3c;
+PROVISIONING_PROFILE = 0a1fa928-ee0d-4b51-b131-25114fe1ac74;
 ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 PRODUCT_NAME = FourDAdmin;

@@ -19,12 +19,12 @@ import { FourDInterface } from 'js44d';
 export class ListEditorComponent implements AfterContentInit {
 
     public listCount = 0;
-    @Input() public listNames = [];
+    public listNames:ObservableArray<string> = new ObservableArray();
     public selectedListName = '';
     public selectedListIndex = -1;
-    @Input() public listItems: ObservableArray<string> = new ObservableArray([]);
+    public listItems: ObservableArray<string> = new ObservableArray([]);
     public selectedItemIndex = -1;
-    @Input() public selectedItemValue = '';
+    public selectedItemValue = '';
 
     constructor(private fourD: FourDInterface, private router: RouterExtensions) {
 
@@ -34,8 +34,7 @@ export class ListEditorComponent implements AfterContentInit {
         this.fourD.call4DRESTMethod('REST_GetListOf4DLists', {})
             .subscribe(resultJSON => {
                 this.listCount = resultJSON.listCount;
-                this.listNames = resultJSON.listNames;
-
+                this.listNames = new ObservableArray(resultJSON.listNames);
             });
     }
 
@@ -44,7 +43,7 @@ export class ListEditorComponent implements AfterContentInit {
         this.selectedItemValue = '';
         this.selectedListIndex = listIndex;
 
-        this.selectedListName = this.listNames[listIndex];
+        this.selectedListName = this.listNames.getItem(listIndex);
         const body: any = { list: this.selectedListName };
         this.fourD.call4DRESTMethod('REST_Get4DList', body)
             .subscribe((resultJSON) => {
@@ -91,8 +90,9 @@ export class ListEditorComponent implements AfterContentInit {
     }
 
     update4DList() {
-        this.fourD.call4DRESTMethod('REST_Update4DList', { listName: this.selectedListName, 
-                listValues: JSON.stringify({ items: this.listItems.filter(() => { return true }) }) })
+        let body = { listName: this.selectedListName, listValues: JSON.stringify({ items: this.listItems.filter(() => { return true }) }) };
+        console.log(body);
+        this.fourD.call4DRESTMethod('REST_Update4DList', body )
             .subscribe();
     }
 

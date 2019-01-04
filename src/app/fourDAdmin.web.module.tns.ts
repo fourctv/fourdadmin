@@ -76,7 +76,7 @@ const routes: Routes = [
         ],
     providers: [
         // Allows your {N} application to use lazy-loading
-        { provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader },
+        //{ provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader },
         FourDInterface, FourDModel, FourDCollection
     ],
     entryComponents: [BrowseQueryBand, BrowseFormDialog, BrowseFieldDialog],

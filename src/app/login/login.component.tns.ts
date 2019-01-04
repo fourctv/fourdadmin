@@ -46,6 +46,7 @@ export class LoginComponent {
         this.fourD.signIn(this.username, md5pwd.toUpperCase())
             .then((authentication) => {
                 if (FourDInterface.authentication) {
+                    console.log(authentication)
                     this.router.navigate(['/loggedin'], { skipLocationChange: true, clearHistory: true, transition: { name: 'fade' } });
 
                     this.showError = '';
