@@ -3,7 +3,7 @@ import { RouterExtensions } from 'nativescript-angular';
 
 import { RadSideDrawerComponent } from 'nativescript-ui-sidedrawer/angular';
 import { SideDrawerLocation } from 'nativescript-ui-sidedrawer';
-import { isAndroid, isIOS } from 'platform';
+import { isAndroid, isIOS } from 'tns-core-modules/platform';
 
 @Component({
     moduleId: module.id,

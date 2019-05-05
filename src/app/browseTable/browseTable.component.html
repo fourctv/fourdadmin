@@ -80,7 +80,7 @@
         </div>
 
         <div class="row" style="border-style: solid; border-width: thin; padding-bottom: 4px;" [style.height]="currentGridHeight" [hidden]="currentTable === ''">
-            <record-list [editWindow]="editWindow" [dialogInstance]="dialog" style="width:100%;">
+            <record-list [editWindow]="editWindow" [dialogInstance]="dialog" style="width:100%;height:100%">
                 <query-band [enableSort]="true" [enableQBE]="true" [enableButtonBar]="true" [enableAddRecord]="false" [enableDeleteRecord]="true" [enableExportGrid]="false">
                     <queryband class="form-group">
                         <browse-queryband  #customQueryBand [queryFields]="listOfColumns" [(queryData)]="queryData">
