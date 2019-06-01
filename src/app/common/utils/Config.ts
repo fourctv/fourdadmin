@@ -23,6 +23,6 @@ export class Config {
     }
 
     public static get APP_VERSION(): string {
-        return '1.19.05.04a';
+        return '1.19.06.01a';
     }
 }

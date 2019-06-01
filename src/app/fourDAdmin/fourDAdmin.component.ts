@@ -11,8 +11,8 @@ import { BlankPage } from './blankPage';
 
 export const routes: Routes = [
     { path: 'login', component: BlankPage },
-    { path: 'browseTable', loadChildren: 'app/browseTable/browseTable.module#BrowseTableModule' },
-    { path: 'listEditor', loadChildren: 'app/listEditor/listEditor.module#ListEditorModule' },
+    { path: 'browseTable', loadChildren: () => import('app/browseTable/browseTable.module').then(m => m.BrowseTableModule) },
+    { path: 'listEditor', loadChildren: () => import('app/listEditor/listEditor.module').then(m => m.ListEditorModule) },
     { path: '**', component: BlankPage }
 ];
 

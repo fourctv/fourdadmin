@@ -9,7 +9,7 @@ export const HomeRoutes: Routes = [
     },
     {
         path: 'about',
-        loadChildren: './app/+about/about.module#AboutModule'
+        loadChildren: () => import('./app/+about/about.module').then(m => m.AboutModule)
         // TODO: Uncomment below line when building for webpack
         // loadChildren: '../+about/about.module#AboutModule'
     }

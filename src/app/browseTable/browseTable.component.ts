@@ -65,7 +65,7 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
     /**
      * get the associated record list object instance
      */
-    @ViewChild(RecordList) recordList: RecordList;
+    @ViewChild(RecordList, { static: false }) recordList: RecordList;
 
     // Declare Program edit Window
     //
@@ -73,7 +73,7 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
     /**
      * get the associated Datagrid object instance
      */
-    @ViewChild(DataGrid) theGrid: DataGrid;
+    @ViewChild(DataGrid, { static: false }) theGrid: DataGrid;
 
     // the columns for the datagrid
     public columnDefs = [
