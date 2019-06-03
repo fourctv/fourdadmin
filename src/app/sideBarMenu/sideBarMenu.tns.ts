@@ -76,7 +76,7 @@ export class SideBarMenu implements OnInit {
 
     @Output() public onSwipe: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild(RadSideDrawerComponent, { static: false })) public drawerComponent: RadSideDrawerComponent;
+    @ViewChild(RadSideDrawerComponent, { static: false }) public drawerComponent: RadSideDrawerComponent;
 
 
     constructor(private router: RouterExtensions) {
