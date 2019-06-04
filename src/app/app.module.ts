@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // app
 import { Config } from './common/index';
 import { AppComponent } from './app.component';
-import { SHARED_MODULES } from './app.common';
+//import { SHARED_MODULES } from './app.common';
 
 Config.PLATFORM_TARGET = Config.PLATFORMS.WEB;
 
@@ -13,7 +13,7 @@ Config.PLATFORM_TARGET = Config.PLATFORMS.WEB;
     declarations: [ AppComponent ],
     imports: [
         BrowserAnimationsModule,
-        ...SHARED_MODULES
+//        ...SHARED_MODULES
     ],
     providers: [],
     bootstrap: [ AppComponent ]

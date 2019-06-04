@@ -1,6 +1,6 @@
 {
     "files.exclude": {
-        "nativescript/app": true,
+        //"nativescript/app": true,
         // "nativescript/hooks": true,
         "nativescript/src/app/**/*.html": {
             "when": "$(basename).tns.html"

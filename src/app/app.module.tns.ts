@@ -9,7 +9,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 // app
 import { Config } from './common/index';
 import { AppComponent } from './app.component';
-import { SHARED_MODULES } from './app.common';
+//import { SHARED_MODULES } from './app.common';
 
 Config.PLATFORM_TARGET = Config.PLATFORMS.MOBILE_NATIVE;
 
@@ -33,7 +33,7 @@ export function createTranslateLoader(http: HttpClient) {
         //         deps: [HttpClient]
         //     }
         // }),
-        ...SHARED_MODULES
+        //...SHARED_MODULES
     ],
     declarations: [
         AppComponent
