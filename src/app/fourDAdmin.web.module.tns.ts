@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // nativescript
 import { NSModuleFactoryLoader } from 'nativescript-angular/router';
-import { NativeScriptHttpModule } from 'nativescript-angular/http';
+import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { NativeScriptRouterModule } from 'nativescript-angular';
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
@@ -52,7 +52,7 @@ const routes: Routes = [
     ],
     imports: [
         NativeScriptModule,
-        NativeScriptHttpModule,
+        NativeScriptHttpClientModule,
         NativeScriptFormsModule,
         NativeScriptRouterModule,
         NativeScriptRouterModule.forRoot(<any>routes),
@@ -64,7 +64,7 @@ const routes: Routes = [
     exports: [
         NativeScriptModule,
         NativeScriptFormsModule,
-        NativeScriptHttpModule,
+        NativeScriptHttpClientModule,
         NativeScriptRouterModule,
         NativeScriptUISideDrawerModule,
         NativeScriptUIListViewModule,
