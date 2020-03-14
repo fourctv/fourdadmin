@@ -6,7 +6,10 @@ sudo: false
 install: true  # yarn bug
 
 addons:
-  firefox: "45.0"
+  apt:
+    packages:
+      - google-chrome-stable
+
 
 os:
   - linux
@@ -28,7 +31,7 @@ after_failure:
   - cat /home/travis/build/fourctv/fourdadmin/npm-debug.log
 
 branches:
-  only: master
+  only: [master]
 
 notifications:
   email: true
@@ -38,7 +41,7 @@ notifications:
     on_start: never     # options: [always|never|change] default: always
 
 cache:
-  directories: node_modules
+  directories: [node_modules]
 
 script:
   - npm run build
