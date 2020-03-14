@@ -51,8 +51,8 @@
     "lazy": "1.0.11",
     "nativescript-css-loader": "~0.26.1",
     "nativescript-dev-webpack": "~1.2.1",
-    "typescript": "3.5.3",
-    "node-sass": "4.13.0"
+    "node-sass": "^4.13.1",
+    "typescript": "3.5.3"
   },
   "scripts": {
     "prepPhone": "gulp build.Phone",
