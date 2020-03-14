@@ -141,10 +141,6 @@ button:hover {
 
 /* doiuse-enable */
 
-/* Box-sizing border-box */
-* {
-  box-sizing: border-box;
-}
 
 /* Set up a default font and some padding to provide breathing room */
 body {
@@ -417,7 +413,6 @@ legend {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
   line-height: 1.42857143;
 }
 
@@ -436,6 +431,10 @@ div.k-window {
    filter: invert(100%);
 }
 
+.k-window-content {
+    padding: unset;
+    display: contents;
+}
 /* doiuse-enable */
 
 .k-window-titlebar {
