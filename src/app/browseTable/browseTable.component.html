@@ -6,7 +6,7 @@
     </div>
     <div class="container-fluid" style="margin-left:10px; height: calc(100% - 65px); width: calc(100% - 40px)">
         <div class="row" [hidden]="hideBrowseConfig">
-            <div class="col-sm-2 block">
+            <div class="col-sm-3 block">
                 <h4>Select Table</h4>
                 <table  class="listTable">
                     <tbody class="listBody">
@@ -34,7 +34,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-sm-2 block">
+            <div class="col-sm-3 block">
                 <h4>Columns</h4>
                 <table class="listTable" style="height: 210px;">
                     <tbody class="listBody" (dragenter)="allowDrop($event)" (dragover)="allowDrop($event)" (dragend)="disableDrop($event)" (dragleave)="disableDrop($event)" (drop)="handleDrop($event)">
@@ -48,25 +48,25 @@
                     <button class="regularButton" (click)="saveConfig()" [disabled]="noTableSelected()">Save Config</button>
                 </div>
             </div>
-            <div class="col-sm-4" style="border-style: solid; border-width: thin; padding-bottom: 4px;" [hidden]="!currentField.name">
+            <div class="col-sm-4 block" style="border-style: solid; border-width: thin; padding-bottom: 4px;" [hidden]="!currentField.name">
                 <h4>Column Info</h4>
                 <form  class="form-horizontal" style="height: 250px;">
                     <div class="form-group">
                         <label for="field" class="control-label col-sm-2">Field:</label>
                         <div class="col-sm-6">
-                            <input name="fieldName" type="text" class="form-control" disabled [(ngModel)]="currentField.name">
+                            <input name="fieldName" style="width: 270px;" type="text" class="form-control" disabled [(ngModel)]="currentField.name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="pwd" class="control-label col-sm-2">Title:</label>
                         <div class="col-sm-6">
-                            <input name="title" type="text" class="form-control" id="title" [(ngModel)]="currentField.title" (change)="mapColumnsToGrid()">
+                            <input name="title" style="width: 270px;" type="text" class="form-control" id="title" [(ngModel)]="currentField.title" (change)="mapColumnsToGrid()">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="checkbox">
-                                <label><input name="indexed" type="checkbox" [(ngModel)]="currentField.quickQuery" (change)="mapColumnsToGrid()">is present on Quick Query</label>
+                                <label><input name="indexed" type="checkbox" [(ngModel)]="currentField.quickQuery" (change)="mapColumnsToGrid()">   is present on Quick Query</label>
                             </div>
                         </div>
                     </div>
