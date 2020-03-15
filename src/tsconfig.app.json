@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "",
-    "types": ["jquery", "kendo-ui"]
+    "types": ["node","jquery", "kendo-ui"]
   },
   "files": [
     "main.ts",
