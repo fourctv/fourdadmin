@@ -1,8 +1,8 @@
-<web-application>
+<web-application style="padding: 10px;">
     <h2 style="padding-left: 10px;">List Editor</h2>
 
     <div class="container-fluid" style="margin-left:10px; height: calc(100% - 65px)">
-        <div class="row" >
+        <div class="row" style="padding: 10px;">
             <div class="col-sm-2" style="border-style: solid; border-width: thin; padding-bottom: 4px;">
                 <h4>Select List</h4>
                 <table  class="listTable" style="height: 350px;">
@@ -27,24 +27,24 @@
             <div class="col-sm-5" style="border-style: solid; border-width: thin; padding-bottom: 4px;" [hidden]="!selectedList">
                 <h4>List Item Info</h4>
                 <form  class="form-horizontal listTable" style="height: 348px;">
-                    <div class="form-group" style="padding-top: 10px;">
-                        <label for="field" class="control-label col-sm-2">List Item Value:</label>
+                    <div class="form-group" style="padding: 10px;">
+                        <label for="field" class="control-label">List Item Value:</label>
                         <div class="col-sm-6">
-                            <input name="listitem" type="text" class="form-control" [(ngModel)]="selectedItemValue">
+                            <input name="listitem" type="text" class="form-control" style="width: 350px;" [(ngModel)]="selectedItemValue">
                         </div>
                     </div>
- 
-                     <div class="form-group"> 
+
+                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button class="regularButton" style="width: 70px;padding-right: 5px;" (click)="addItem()" [disabled]="selectedItemValue === ''">Add</button>
-                            <button class="regularButton" style="width: 70px;padding-right: 5px;" (click)="changeItem()" [disabled]="!selectedItem">Change</button>
-                            <button class="regularButton" style="width: 70px;padding-right: 5px;" (click)="deleteItem()" [disabled]="!selectedItem">Delete</button>
+                            <button class="regularButton" style="width: 70px;margin-right: 5px;" (click)="addItem()" [disabled]="selectedItemValue === ''">Add</button>
+                            <button class="regularButton" style="width: 70px;margin-right: 5px;" (click)="changeItem()" [disabled]="!selectedItem">Change</button>
+                            <button class="regularButton" style="width: 70px;margin-right: 5px;" (click)="deleteItem()" [disabled]="!selectedItem">Delete</button>
                         </div>
                     </div>
                  </form>
             </div>
 
-        </div>        
+        </div>
 
     </div>
 </web-application>

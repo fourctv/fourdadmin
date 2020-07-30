@@ -208,6 +208,10 @@ label input {
     content: "\E253"
 }
 
+   .cdk-overlay-container {
+        position: relative;
+        z-index: 20000;
+        }
 
 /*
   4C-TV Text Styles used in various Controls

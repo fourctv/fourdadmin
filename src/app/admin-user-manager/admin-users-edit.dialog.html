@@ -1,0 +1,82 @@
+<div class="formPanel">
+    <fieldset class="titledGroupBox">
+        <legend class="formHeaderSmall">Info for User ({{currentUserRecord.ID}})</legend>
+        <div style="height:32px;">
+            <span>
+                <label class="fieldPromptBold" style="width:130px;">Username</label>
+                <input type="text" class="FieldEntry" style="width:400px;" [(ngModel)]="currentUserRecord.UserName" />
+            </span>
+        </div>
+
+        <div style="height:32px;">
+            <span>
+                <label class="fieldPromptBold" style="width:130px;">Email</label>
+                <input type="email" class="FieldEntry"  style="width:400px;"  [(ngModel)]="currentUserRecord.emailAddress" />
+            </span>
+        </div>
+    </fieldset>
+
+
+    <fieldset class="TitledGroupBox">
+        <legend class="formHeaderSmall">Access</legend>
+        <div style="height:32px;">
+            <span>
+                <input type="checkbox" class="FieldEntry"   [(ngModel)]="currentUserRecord.isAdmin" />
+                <label class="fieldPromptBold" style="margin-left:10px;">Has Super User Privileges</label>
+            </span>
+        </div>
+        <div style="height:32px;">
+            <span>
+                <input type="checkbox" class="FieldEntry"   [(ngModel)]="currentUserRecord.AccountDisabled" />
+                <label class="fieldPromptBold" style="margin-left:10px;">Account disabled</label>
+            </span>
+        </div>
+        <div style="height:32px;">
+            <span>
+                <input type="checkbox" class="FieldEntry"   [(ngModel)]="currentUserRecord.ChangeNextLogin" />
+                <label class="fieldPromptBold" style="margin-left:10px;">Must change password on next login</label>
+            </span>
+        </div>
+        <div style="height:32px;">
+            <span>
+                <input type="checkbox" class="FieldEntry"   [(ngModel)]="currentUserRecord.CannotChange" />
+                <label class="fieldPromptBold" style="margin-left:10px;">User cannot change password</label>
+            </span>
+        </div>
+        <div style="height:32px;">
+            <span>
+                <input type="checkbox" class="FieldEntry"   [(ngModel)]="currentUserRecord.NeverExpires" />
+                <label class="fieldPromptBold" style="margin-left:10px;">Password never expires</label>
+            </span>
+        </div>
+        <hr/>
+        <div style="height:32px;">
+            <span>
+                <label class="fieldPromptBold" style="width:130px;">Change Password :</label>
+                <input type="password" class="FieldEntry"  style="width:200px;"  [(ngModel)]="newPassword" />
+            </span>
+            <span>
+                <label class="fieldPromptBold" style="width:130px; margin-left:20px;">Confirm Password :</label>
+                <input type="password" class="FieldEntry"  style="width:200px;"  [(ngModel)]="confirmPassword" />
+            </span>
+        </div>
+        <hr/>
+        <div style="height:50px;">
+            <span>
+                <label class="fieldPromptBold" style="width:150px;">Groups Membership</label>
+                <mat-form-field style="width:500px;" >
+                    <mat-select style="width:500px;" [formControl]="groupValues" multiple>
+                        <mat-option *ngFor="let item of groupList" [value]="item">{{item.GroupName}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </span>
+        </div>
+
+    </fieldset>
+
+    <div class="buttonBar">
+        <button class="regularButton" style="width:90px;" (click)="dialog.close('cancel')">Cancel</button>
+        <button class="regularButton" style="margin-left:20px;width:90px;" (click)="doSaveRecord()">SAVE</button>
+    </div>
+</div>

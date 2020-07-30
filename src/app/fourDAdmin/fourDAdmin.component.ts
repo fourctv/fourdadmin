@@ -13,6 +13,7 @@ export const routes: Routes = [
     { path: 'login', component: BlankPage },
     { path: 'browseTable', loadChildren: () => import('app/browseTable/browseTable.module').then(m => m.BrowseTableModule) },
     { path: 'listEditor', loadChildren: () => import('app/listEditor/listEditor.module').then(m => m.ListEditorModule) },
+    { path: 'userManager', loadChildren: () => import('app/admin-user-manager/admin-user-manager.module').then(m => m.AdminUserManagerModule) },
     { path: '**', component: BlankPage }
 ];
 
@@ -36,10 +37,10 @@ export class FourDAdminComponent implements AfterContentInit {
             routePath: '/listEditor',
             title: 'List Editor'
         },
-        /*  {
-              routePath: '/userManager',
-              title: 'User Manager'
-          }*/
+        {
+            routePath: '/userManager',
+            title: 'User Manager'
+        }
     ];
 
     public get currentUser(): string {

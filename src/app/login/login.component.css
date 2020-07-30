@@ -1,6 +1,6 @@
 .login {
     width: 1070px !important;
-    background: url("../../assets/icons/login_splash.png");
+    background: url("/assets/icons/login_splash.png");
     background-repeat: no-repeat;
     height: 670px !important;
     padding-left: 200px;
