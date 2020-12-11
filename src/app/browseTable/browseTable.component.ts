@@ -83,7 +83,7 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
     //
     // Declare Datagrid properties
     //
-    public model = FourDModel; // the record datamodel to use 
+    public model = FourDModel; // the record datamodel to use
 
 
     private selectedRow: any = null;
@@ -277,7 +277,7 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
         // this.theGrid.setColumnConfig(this.columnDefs);
         this.theGrid.setExternalDataSource(this.dataSource, this.columnDefs);
         this.recordList.clearQuery(); // clear any previous query
-        this.theGrid.loadData(); // and clear the grid
+        // this.theGrid.loadData(); // and clear the grid
         this.theGrid.gridObject.bind('columnResize', () => { this.saveColumnConfig() });
     }
 
@@ -410,6 +410,7 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
                         }
 
                         this.theGrid.getDataProvider().models = this.models;
+                        this.theGrid.getDataProvider().totalRecordCount = this.totalRecordCount;
                         options.success(data);
                     },
                     error => {
