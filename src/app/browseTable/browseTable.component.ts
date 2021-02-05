@@ -151,6 +151,7 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
             this.fourD.call4DRESTMethod('REST_GetFieldsInTable', { TableName: this.listOfTables[selectRow] })
                 .subscribe(resultJSON => {
                     this.listOfFields = resultJSON.fieldList;
+                    this.listOfFields.sort((a, b) => { return (a.name < b.name) ? -1 : 1 })
                     this.selectedRow.classList.add('selectedItem');
 
                     this.model.prototype.tableName = this.currentTable;
