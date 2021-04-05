@@ -277,7 +277,8 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
 
         // this.theGrid.setColumnConfig(this.columnDefs);
         this.theGrid.setExternalDataSource(this.dataSource, this.columnDefs);
-        this.recordList.clearQuery(); // clear any previous query
+        // this.recordList.clearQuery(); // clear any previous query
+        this.recordList.refreshGrid();
         // this.theGrid.loadData(); // and clear the grid
         this.theGrid.gridObject.bind('columnResize', () => { this.saveColumnConfig() });
     }

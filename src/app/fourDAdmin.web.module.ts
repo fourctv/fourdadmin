@@ -24,7 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 
-const routerModule = RouterModule.forRoot(routes);
+const routerModule = RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' });
 
 
 
