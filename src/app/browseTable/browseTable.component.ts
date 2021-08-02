@@ -178,7 +178,8 @@ export class BrowseTableComponent implements ICustomModalComponent, AfterContent
 
                     }
 
-                    this.mapColumnsToGrid(); // update datagrid columns
+                    this.recordList.clearQuery(); // clear any previous query
+                   this.mapColumnsToGrid(); // update datagrid columns
                 });
 
         }

@@ -29,7 +29,7 @@
     "@ngx-translate/http-loader": "6.0.0",
     "bootstrap": "^4.6.0",
     "jquery": "^3.6.0",
-    "js44d": "^1.2.52",
+    "js44d": "^1.2.56",
     "popper.js": "^1.16.1",
     "rxjs": "^6.6.7",
     "tslib": "^2.2.0",
