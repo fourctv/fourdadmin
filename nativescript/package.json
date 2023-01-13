@@ -44,7 +44,7 @@
     "@angular/compiler-cli": "~10.0.6",
     "@nativescript/schematics": "^10.0.2",
     "@nativescript/tslint-rules": "~0.0.5",
-    "@nativescript/webpack": "~2.0.0",
+    "@nativescript/webpack": "~5.0.12",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
